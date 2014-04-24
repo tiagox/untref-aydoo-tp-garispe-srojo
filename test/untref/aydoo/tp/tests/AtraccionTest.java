@@ -25,8 +25,13 @@ public class AtraccionTest {
 	}
 
 	@Test
-	public void pedirleElNombreALaAtraccionDeberiaDevolverElMismoNombreAsignadoCuandoSeLoInstancio() {
-		Assert.assertEquals(this.nombre, atraccion.getNombre());
+	public void pedirElNombreDeberiaDevolverElMismoNombreAsignadoAlCrearla() {
+		Assert.assertEquals(this.nombre, this.atraccion.getNombre());
+	}
+	
+	@Test
+	public void pedirLaLongitudDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Assert.assertEquals(this.longitud, this.atraccion.getLongitud(), 0.000001);
 	}
 
 }
