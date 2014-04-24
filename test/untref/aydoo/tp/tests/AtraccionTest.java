@@ -1,28 +1,32 @@
 package untref.aydoo.tp.tests;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import untref.aydoo.tp.Atraccion;
 import untref.aydoo.tp.TipoAtraccion;
 
 public class AtraccionTest {
+	
+	private String nombre = "Mi atracción";
+	private Double longitud = 1000.0;
+	private Double latitud = 1000.0;
+	private Double costo = 10.0;
+	private Double duracion = 30.0;
+	private Integer cupoVisitantes = 100;
+	private TipoAtraccion tipo = TipoAtraccion.PAISAJE;
+	private Atraccion atraccion;
+	
+	@Before
+	public void setup() {
+		this.atraccion = new Atraccion(nombre, longitud, latitud, costo,
+				duracion, cupoVisitantes, tipo);
+	}
 
 	@Test
-	public void instanciarUnObjetoDeberiaAceptarTodosLosAtributosEnElConstructor() {
-		String nombre = "Mi atracción";
-		Double longitud = 0.0;
-		Double latitud = 0.0;
-		Double costo = 0.0;
-		Double duracion = 0.0;
-		Integer cupoVisitantes = 0;
-		TipoAtraccion tipo = TipoAtraccion.PAISAJE;
-
-		Atraccion atraccion = new Atraccion(nombre, longitud, latitud, costo,
-				duracion, cupoVisitantes, tipo);
-
-		Assert.assertNotNull(atraccion);
-
+	public void pedirleElNombreALaAtraccionDeberiaDevolverElMismoNombreAsignadoCuandoSeLoInstancio() {
+		Assert.assertEquals(this.nombre, atraccion.getNombre());
 	}
 
 }
