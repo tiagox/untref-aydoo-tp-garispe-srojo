@@ -8,7 +8,7 @@ import untref.aydoo.tp.Atraccion;
 import untref.aydoo.tp.TipoAtraccion;
 
 public class AtraccionTest {
-	
+
 	private String nombre = "Mi atracción";
 	private Double longitud = 1000.0;
 	private Double latitud = 1000.0;
@@ -17,7 +17,7 @@ public class AtraccionTest {
 	private Integer cupoVisitantes = 100;
 	private TipoAtraccion tipo = TipoAtraccion.PAISAJE;
 	private Atraccion atraccion;
-	
+
 	@Before
 	public void setup() {
 		this.atraccion = new Atraccion(nombre, longitud, latitud, costo,
@@ -28,10 +28,21 @@ public class AtraccionTest {
 	public void pedirElNombreDeberiaDevolverElMismoNombreAsignadoAlCrearla() {
 		Assert.assertEquals(this.nombre, this.atraccion.getNombre());
 	}
-	
+
 	@Test
 	public void pedirLaLongitudDeberiaDevolverElMismoValorAsignadoAlCrearla() {
-		Assert.assertEquals(this.longitud, this.atraccion.getLongitud(), 0.000001);
+		Assert.assertEquals(this.longitud, this.atraccion.getLongitud(),
+				0.000001);
+	}
+
+	@Test
+	public void pedirLaLatitudDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Assert.assertEquals(this.latitud, this.atraccion.getLatitud(), 0.000001);
+	}
+
+	@Test
+	public void pedirElCostoDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Assert.assertEquals(this.costo, this.atraccion.getCosto(), 0.000001);
 	}
 
 }
