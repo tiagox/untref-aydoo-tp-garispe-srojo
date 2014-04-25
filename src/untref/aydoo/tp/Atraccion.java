@@ -4,8 +4,9 @@ public class Atraccion {
 
 	private String nombre;
 	private Double longitud;
-	private double latitud;
-	private double costo;
+	private Double latitud;
+	private Double costo;
+	private Double duracion;
 
 	public Atraccion(String nombre, Double longitud, Double latitud,
 			Double costo, Double duracion, Integer cupoVisitantes,
@@ -14,22 +15,27 @@ public class Atraccion {
 		this.longitud = longitud;
 		this.latitud = latitud;
 		this.costo = costo;
+		this.duracion = duracion;
 	}
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
-	public double getLongitud() {
+	public Double getLongitud() {
 		return this.longitud;
 	}
 
-	public double getLatitud() {
+	public Double getLatitud() {
 		return this.latitud;
 	}
 
-	public double getCosto() {
+	public Double getCosto() {
 		return this.costo;
+	}
+
+	public Double getDuracion() {
+		return this.duracion;
 	}
 
 }

@@ -12,37 +12,35 @@ public class Usuario {
 	public Usuario(String nombre, String apellido, Double presupuesto,
 			Double tiempoDisponible, Double velocidadTraslado,
 			TipoAtraccion tipoPreferido) {
-
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.velocidadTraslado = velocidadTraslado;
 		this.tipoPreferido = tipoPreferido;
-
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public String getApellido() {
-		return apellido;
+		return this.apellido;
 	}
 
 	public Double getPresupuesto() {
-		return presupuesto;
+		return this.presupuesto;
 	}
 
 	public Double getTiempoDisponible() {
-		return tiempoDisponible;
+		return this.tiempoDisponible;
 	}
 
 	public Double getVelocidadTraslado() {
-		return velocidadTraslado;
+		return this.velocidadTraslado;
 	}
 
 	public TipoAtraccion getTipoPreferido() {
-		return tipoPreferido;
+		return this.tipoPreferido;
 	}
 }

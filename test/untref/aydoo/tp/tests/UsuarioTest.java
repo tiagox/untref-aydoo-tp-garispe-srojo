@@ -1,7 +1,6 @@
 package untref.aydoo.tp.tests;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +19,6 @@ public class UsuarioTest {
 
 	@Before
 	public void setup() {
-
 		this.usuario = new Usuario(nombre, apellido, presupuesto,
 				tiempoDisponible, velocidadTraslado, tipoPreferido);
 	}

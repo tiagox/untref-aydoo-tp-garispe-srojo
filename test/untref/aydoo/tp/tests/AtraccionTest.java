@@ -45,4 +45,9 @@ public class AtraccionTest {
 		Assert.assertEquals(this.costo, this.atraccion.getCosto(), 0.000001);
 	}
 
+	@Test
+	public void pedirLaDuracionDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Assert.assertEquals(this.duracion, this.atraccion.getDuracion(), 0.000001);
+	}
+
 }
