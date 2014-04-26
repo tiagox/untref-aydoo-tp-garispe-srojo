@@ -29,29 +29,29 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void pedirElApellidoDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
+	public void pedirElApellidoDeberiaDevolverElMismoApellidoAsignadoAlCrearlo() {
 		Assert.assertEquals(this.apellido, usuario.getApellido());
 	}
 
 	@Test
-	public void pedirElPresupuestoDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
+	public void pedirElPresupuestoDeberiaDevolverElMismoPresupuestoAsignadoAlCrearlo() {
 		Assert.assertEquals(this.presupuesto, usuario.getPresupuesto());
 	}
 
 	@Test
-	public void pedirElTiempoDisponibleDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
+	public void pedirElTiempoDisponibleDeberiaDevolverElMismoTiempoDisponibleAsignadoAlCrearlo() {
 		Assert.assertEquals(this.tiempoDisponible,
 				usuario.getTiempoDisponible());
 	}
 
 	@Test
-	public void pedirLaVelocidadDeTrasladoDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
+	public void pedirLaVelocidadDeTrasladoDeberiaDevolverLaMismaVelocidadTrasladoAsignadoAlCrearlo() {
 		Assert.assertEquals(this.velocidadTraslado,
 				usuario.getVelocidadTraslado());
 	}
 
 	@Test
-	public void pedirElTipoPreferidoDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
+	public void pedirElTipoPreferidoDeberiaDevolverElMismoTipoPreferidoAsignadoAlCrearlo() {
 		Assert.assertEquals(this.tipoPreferido, usuario.getTipoPreferido());
 	}
 
