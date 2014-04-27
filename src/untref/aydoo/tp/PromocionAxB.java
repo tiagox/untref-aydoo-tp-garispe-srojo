@@ -23,5 +23,9 @@ public class PromocionAxB extends Promocion {
 		return super.hasTipoAtraccion(tipo)
 				|| (this.atraccionGratis.getTipo() == tipo);
 	}
+	
+	public Double getDuracion() {
+		return super.getDuracion() + this.atraccionGratis.getDuracion();
+	}
 
 }

@@ -33,4 +33,12 @@ public abstract class Promocion {
 		return false;
 	}
 
+	public Double getDuracion() {
+		Double duracionTotal = 0.0;
+		for (Atraccion atraccion : this.atracciones) {
+			duracionTotal += atraccion.getDuracion();
+		}
+		return duracionTotal;
+	}
+
 }

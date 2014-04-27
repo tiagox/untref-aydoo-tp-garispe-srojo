@@ -211,4 +211,69 @@ public class PromocionAxBTest {
 		Assert.assertFalse(promocion.hasTipoAtraccion(TipoAtraccion.PAISAJE));
 	}
 
+	@Test
+	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtraccionesInclusoLaGratuita() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
+				costoAtraccionGratis, duracion);
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
+				atraccionGratis);
+
+		Double duracionEsperada = 18.0;
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
+	@Test
+	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtraccionesCualquierSeaInclusoLaGratuita() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
+				costoAtraccionGratis, duracion);
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
+				atraccionGratis);
+
+		Double duracionEsperada = 36.0;
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
+	@Test
+	public void consultarLaDuracionDeberiaDevolver0SiNoHayAtraccionesInclusoLaGratuita() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 0.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
+				costoAtraccionGratis, duracion);
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
+				atraccionGratis);
+
+		Double duracionEsperada = 0.0;
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
 }

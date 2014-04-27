@@ -77,7 +77,8 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeberiaDevolver75SiElPrecioDeLasAtraccionesSuman100YLaPromocionEs25() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
+				4.0));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -112,7 +113,8 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeberiaDevolver150SiElPrecioDeLasAtraccionesSuman200YLaPromocionEs25() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 200.0;
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion,
+				4.0));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -129,7 +131,8 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeberiaDevolver0SiLaPromocionEs100() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 300.0;
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
+				4.0));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 100.0;
@@ -170,8 +173,8 @@ public class PromocionPorcentualTest {
 		Date hasta = new Date();
 		Double descuento = 25.0;
 
-		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
-				hasta, descuento);
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
 
 		Assert.assertTrue(promocion.hasTipoAtraccion(TipoAtraccion.DEGUSTACION));
 	}
@@ -186,10 +189,63 @@ public class PromocionPorcentualTest {
 		Date hasta = new Date();
 		Double descuento = 25.0;
 
-		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
-				hasta, descuento);
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
 
 		Assert.assertFalse(promocion.hasTipoAtraccion(TipoAtraccion.PAISAJE));
+	}
+
+	@Test
+	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtracciones() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double duracionEsperada = 12.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
+	@Test
+	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtraccionesCualquierSea() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double duracionEsperada = 30.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
+	@Test
+	public void consultarLaDuracionDeberiaDevolver0SiNoHayAtracciones() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double duracionEsperada = 0.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
 	}
 
 }
