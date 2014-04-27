@@ -12,6 +12,8 @@ public class UsuarioTest {
 	private Double presupuesto = 1000.0;
 	private Double tiempoDisponible = 120.0;
 	private Double velocidadTraslado = 15.0;
+	private Double latitud = 100.0;
+	private Double longitud = 100.0;
 	private TipoAtraccion tipoPreferido = TipoAtraccion.AVENTURA;
 
 	private Usuario usuario;
@@ -19,7 +21,7 @@ public class UsuarioTest {
 	@Before
 	public void setup() {
 		this.usuario = new Usuario(presupuesto,
-				tiempoDisponible, velocidadTraslado, tipoPreferido);
+				tiempoDisponible, velocidadTraslado, latitud, longitud, tipoPreferido);
 	}
 
 	@Test
@@ -43,5 +45,16 @@ public class UsuarioTest {
 	public void pedirElTipoPreferidoDeberiaDevolverElMismoTipoPreferidoAsignadoAlCrearlo() {
 		Assert.assertEquals(this.tipoPreferido, usuario.getTipoPreferido());
 	}
+
+	@Test
+	public void pedirLaLatitudDeberiaDevolverElMismoTipoPreferidoAsignadoAlCrearlo() {
+		Assert.assertEquals(this.latitud, usuario.getLatitud());
+	}
+
+	@Test
+	public void pedirLaLongitudDeberiaDevolverElMismoTipoPreferidoAsignadoAlCrearlo() {
+		Assert.assertEquals(this.longitud, usuario.getLongitud());
+	}
+
 
 }

@@ -130,9 +130,11 @@ public class GeneradorSugerenciasTest {
 		Double presupuesto = 300.0;
 		Double tiempoDisponible = 15.0;
 		Double velocidadTraslado = 40.0;
+		Double latitud = 25.0;
+		Double longitud = 25.0;
 
 		this.usuario = new Usuario(presupuesto, tiempoDisponible,
-				velocidadTraslado, TipoAtraccion.AVENTURA);
+				velocidadTraslado, latitud, longitud, TipoAtraccion.AVENTURA);
 	}
 
 	@Before
