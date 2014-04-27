@@ -17,7 +17,7 @@ import untref.aydoo.tp.TipoAtraccion;
 public class PromocionAbsolutaTest {
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
+	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2014, 2, 1); // "2014-03-01"
@@ -36,7 +36,7 @@ public class PromocionAbsolutaTest {
 	}
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
+	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2013, 2, 1); // "2014-03-01"
@@ -55,7 +55,7 @@ public class PromocionAbsolutaTest {
 	}
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
+	public void consultarLaVigenciaDeberiaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2015, 2, 1); // "2014-03-01"
@@ -102,8 +102,8 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -118,8 +118,8 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 4.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();

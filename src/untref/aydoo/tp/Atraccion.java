@@ -2,12 +2,14 @@ package untref.aydoo.tp;
 
 public class Atraccion {
 
-	Double costo;
 	private TipoAtraccion tipo;
+	private Double costo;
+	private Double duracion;
 
-	public Atraccion(TipoAtraccion tipo, Double costo) {
+	public Atraccion(TipoAtraccion tipo, Double costo, Double duracion) {
 		this.tipo = tipo;
 		this.costo = costo;
+		this.duracion = duracion;
 	}
 
 	public Double getCosto() {
@@ -16,6 +18,10 @@ public class Atraccion {
 
 	public TipoAtraccion getTipo() {
 		return this.tipo;
+	}
+	
+	public Double getDuracion() {
+		return this.duracion;
 	}
 
 }

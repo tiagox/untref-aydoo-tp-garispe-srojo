@@ -11,7 +11,9 @@ public class AtraccionTest {
 	@Test
 	public void pedirElCostoDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
-		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo);
+		Double duracion = 1.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion);
 
 		Assert.assertEquals(costo, atraccion.getCosto());
 	}
@@ -19,7 +21,9 @@ public class AtraccionTest {
 	@Test
 	public void pedirElCostoDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 200.0;
-		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo);
+		Double duracion = 1.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion);
 
 		Assert.assertEquals(costo, atraccion.getCosto());
 	}
@@ -27,7 +31,9 @@ public class AtraccionTest {
 	@Test
 	public void pedirElTipoDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
-		Atraccion atraccion = new Atraccion(TipoAtraccion.DEGUSTACION, costo);
+		Double duracion = 1.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.DEGUSTACION, costo,
+				duracion);
 
 		Assert.assertEquals(TipoAtraccion.DEGUSTACION, atraccion.getTipo());
 	}
@@ -35,9 +41,31 @@ public class AtraccionTest {
 	@Test
 	public void pedirElTipoDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 100.0;
-		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo);
+		Double duracion = 1.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion);
 
 		Assert.assertEquals(TipoAtraccion.AVENTURA, atraccion.getTipo());
+	}
+
+	@Test
+	public void pedirLaDuracionDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Double costo = 100.0;
+		Double duracion = 2.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.DEGUSTACION, costo,
+				duracion);
+
+		Assert.assertEquals(duracion, atraccion.getDuracion());
+	}
+
+	@Test
+	public void pedirLaDuracionDeberiaDevolverElValorAsignadoCualquieraSea() {
+		Double costo = 100.0;
+		Double duracion = 5.0;
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion);
+
+		Assert.assertEquals(duracion, atraccion.getDuracion());
 	}
 
 }

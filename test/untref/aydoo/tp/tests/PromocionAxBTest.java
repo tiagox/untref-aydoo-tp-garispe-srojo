@@ -16,7 +16,7 @@ import untref.aydoo.tp.TipoAtraccion;
 public class PromocionAxBTest {
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
+	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2014, 2, 1); // "2014-03-01"
@@ -25,8 +25,9 @@ public class PromocionAxBTest {
 		Date hasta = calendario.getTime();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		calendario.set(2014, 4, 15); // "2014-05-15"
 		Date hoy = calendario.getTime();
@@ -38,7 +39,7 @@ public class PromocionAxBTest {
 	}
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
+	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2013, 2, 1); // "2014-03-01"
@@ -47,8 +48,9 @@ public class PromocionAxBTest {
 		Date hasta = calendario.getTime();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		calendario.set(2013, 1, 15); // "2014-02-15"
 		Date hoy = calendario.getTime();
@@ -60,7 +62,7 @@ public class PromocionAxBTest {
 	}
 
 	@Test
-	public void preguntarPorLaVigenciaDeveriaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
+	public void consultarLaVigenciaDeberiaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2015, 2, 1); // "2014-03-01"
@@ -69,8 +71,9 @@ public class PromocionAxBTest {
 		Date hasta = calendario.getTime();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		calendario.set(2015, 2, 15); // "2014-03-15"
 		Date hoy = calendario.getTime();
@@ -85,16 +88,19 @@ public class PromocionAxBTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolverElTotalDeLasAtraccionesQueFueronAgregadas() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
+				6.0));
 		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION,
-				precioAtraccion));
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion));
+				precioAtraccion, 2.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
+				8.0));
 		Date desde = new Date();
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		Double precioEsperado = 300.0;
 
@@ -111,8 +117,9 @@ public class PromocionAxBTest {
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		Double precioEsperado = 0.0;
 
@@ -126,13 +133,15 @@ public class PromocionAxBTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver100SiHaySoloUnaAtraccionQueCuesta100() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion,
+				3.0));
 		Date desde = new Date();
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		Double precioEsperado = 100.0;
 
@@ -145,15 +154,16 @@ public class PromocionAxBTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 5.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 1.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
 				atraccionGratis);
@@ -164,15 +174,16 @@ public class PromocionAxBTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipoInclusoLaAtraccionGratis() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 100.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 100.0, 1.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
 				atraccionGratis);
@@ -183,15 +194,16 @@ public class PromocionAxBTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 8.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 3.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
 
 		Double costoAtraccionGratis = 100.0;
+		Double duracion = 6.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
-				costoAtraccionGratis);
+				costoAtraccionGratis, duracion);
 
 		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
 				atraccionGratis);
