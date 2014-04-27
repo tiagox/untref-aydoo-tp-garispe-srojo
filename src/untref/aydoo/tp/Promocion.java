@@ -19,6 +19,7 @@ public abstract class Promocion {
 		for (Atraccion atraccion : this.atracciones) {
 			costoTotal += atraccion.getCosto();
 		}
+
 		return costoTotal;
 	}
 

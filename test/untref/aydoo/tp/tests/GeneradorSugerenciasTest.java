@@ -40,17 +40,17 @@ public class GeneradorSugerenciasTest {
 	public void setUpPromocionesDisponibles() {
 
 		Atraccion atraccionDeAventura = new Atraccion(TipoAtraccion.AVENTURA,
-				100.0, 8.0);
+				100.0, 8.0, 0.0, 0.0);
 		Atraccion atraccionDeDegustacion = new Atraccion(
-				TipoAtraccion.DEGUSTACION, 50.0, 2.0);
+				TipoAtraccion.DEGUSTACION, 50.0, 2.0, 100.0, 100.0);
 		Atraccion atraccionDePaisaje = new Atraccion(TipoAtraccion.PAISAJE,
-				100.0, 4.0);
+				100.0, 4.0, -100.0, 100.0);
 		Atraccion atraccionDeAventuraCara = new Atraccion(
-				TipoAtraccion.AVENTURA, 500.0, 24.0);
-		// Atraccion atraccionDeDegustacionCara = new Atraccion(
-		// TipoAtraccion.DEGUSTACION, 700.0);
+				TipoAtraccion.AVENTURA, 500.0, 24.0, 100.0, -100.0);
+		// Atraccion atraccionDeDegustacionCara = new
+		// Atraccion(TipoAtraccion.DEGUSTACION, 700.0, -100.0, -100.0);
 		Atraccion atraccionDePaisajeCara = new Atraccion(TipoAtraccion.PAISAJE,
-				400.0, 5.0);
+				400.0, 5.0, 200.0, 100.0);
 
 		this.calendario.set(2014, 2, 1); // "2014-03-01"
 		Date desde = this.calendario.getTime();
@@ -101,7 +101,7 @@ public class GeneradorSugerenciasTest {
 		// Promoción AxB Común No vigente.
 		Double costoAtraccionGratis = 100.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis, 3.0);
+				costoAtraccionGratis, 3.0, 50.0, 50.0);
 
 		this.calendario.set(2014, 4, 1); // "2014-05-01"
 		desde = this.calendario.getTime();
@@ -191,7 +191,8 @@ public class GeneradorSugerenciasTest {
 				this.usuario, this.diaDeVisita);
 
 		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.getDuracion() <= this.usuario.getTiempoDisponible());
+			Assert.assertTrue(promocion.getDuracion() <= this.usuario
+					.getTiempoDisponible());
 		}
 	}
 

@@ -102,8 +102,8 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 0.0, 0.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -118,8 +118,8 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 4.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 4.0, 0.0, 0.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -134,9 +134,9 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 0.0, 0.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -153,9 +153,9 @@ public class PromocionAbsolutaTest {
 	@Test
 	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtraccionesCualquierSea() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0, 0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 0.0, 0.0));
 
 		Date desde = new Date();
 		Date hasta = new Date();
