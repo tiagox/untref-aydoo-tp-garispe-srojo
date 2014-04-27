@@ -17,11 +17,11 @@ public class GeneradorSugerencias {
 		for (Promocion promocion : this.promociones) {
 			if (promocion.isVigente(dia)
 					&& promocion.getPrecio() <= usuario.getPresupuesto()
-					&& promocion.hasTipoAtraccion(usuario.getTipoPreferido())) {
+					&& promocion.hasTipoAtraccion(usuario.getTipoPreferido())
+					&& promocion.getDuracion() <= usuario.getTiempoDisponible()) {
 				sugerencias.add(promocion);
 			}
 		}
 		return sugerencias;
 	}
-
 }

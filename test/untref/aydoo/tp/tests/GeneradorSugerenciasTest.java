@@ -27,6 +27,7 @@ public class GeneradorSugerenciasTest {
 	private Promocion promocionPorcentualVigente;
 	private Promocion promocionAxBNoVigente;
 	private Promocion promocionAbsolutaVigenteBarata;
+	private Promocion promocionPorcentualVigenteBarata;
 
 	private List<Promocion> promocionesDisponibles;
 
@@ -86,6 +87,17 @@ public class GeneradorSugerenciasTest {
 		this.promocionPorcentualVigente = new PromocionPorcentual(
 				atraccionesPromocionPorcentual, desde, hasta, descuento);
 
+		// Promoción Porcentual Barata.
+		List<Atraccion> atraccionesPromocionPorcentualBarata = new ArrayList<Atraccion>();
+		atraccionesPromocionPorcentualBarata.add(atraccionDeAventura);
+		atraccionesPromocionPorcentualBarata.add(atraccionDeDegustacion);
+		atraccionesPromocionPorcentualBarata.add(atraccionDePaisaje);
+		atraccionesPromocionPorcentualBarata.add(atraccionDePaisajeCara);
+
+		descuento = 80.0;
+		this.promocionPorcentualVigenteBarata = new PromocionPorcentual(
+				atraccionesPromocionPorcentualBarata, desde, hasta, descuento);
+
 		// Promoción AxB Común No vigente.
 		Double costoAtraccionGratis = 100.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
@@ -110,12 +122,13 @@ public class GeneradorSugerenciasTest {
 		this.promocionesDisponibles.add(promocionPorcentualVigente);
 		this.promocionesDisponibles.add(promocionAxBNoVigente);
 		this.promocionesDisponibles.add(promocionAbsolutaVigenteBarata);
+		this.promocionesDisponibles.add(promocionPorcentualVigenteBarata);
 	}
 
 	@Before
 	public void setUpUsuario() {
 		Double presupuesto = 300.0;
-		Double tiempoDisponible = 72.0;
+		Double tiempoDisponible = 15.0;
 		Double velocidadTraslado = 40.0;
 
 		this.usuario = new Usuario(presupuesto, tiempoDisponible,
@@ -166,6 +179,19 @@ public class GeneradorSugerenciasTest {
 		for (Promocion promocion : sugerencias) {
 			Assert.assertTrue(promocion.hasTipoAtraccion(this.usuario
 					.getTipoPreferido()));
+		}
+	}
+
+	@Test
+	public void debeSugerirSoloPromocionesQueTenganUnaDuracionMenorALaQueElUsuarioTieneDisponible() {
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
+				this.promocionesDisponibles);
+
+		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+				this.usuario, this.diaDeVisita);
+
+		for (Promocion promocion : sugerencias) {
+			Assert.assertTrue(promocion.getDuracion() <= this.usuario.getTiempoDisponible());
 		}
 	}
 
