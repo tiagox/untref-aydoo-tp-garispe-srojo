@@ -9,6 +9,7 @@ public class PromocionAbsoluta extends Promocion {
 
 	public PromocionAbsoluta(List<Atraccion> atracciones, Date vigenciaDesde,
 			Date vigenciaHasta, Double precio) {
+		this.atracciones = atracciones;
 		this.desde = vigenciaDesde;
 		this.hasta = vigenciaHasta;
 		this.precio = precio;

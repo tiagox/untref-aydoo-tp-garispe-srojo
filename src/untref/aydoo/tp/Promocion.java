@@ -3,11 +3,11 @@ package untref.aydoo.tp;
 import java.util.Date;
 import java.util.List;
 
-public class Promocion {
+public abstract class Promocion {
 
+	protected List<Atraccion> atracciones;
 	protected Date desde;
 	protected Date hasta;
-	protected List<Atraccion> atracciones;
 
 	public Boolean isVigente(Date referencia) {
 		return this.desde.compareTo(referencia) <= 0
@@ -20,6 +20,17 @@ public class Promocion {
 			costoTotal += atraccion.getCosto();
 		}
 		return costoTotal;
+	}
+
+	public abstract Double getPrecio();
+
+	public Boolean hasTipoAtraccion(TipoAtraccion tipo) {
+		for (Atraccion atraccion : this.atracciones) {
+			if (atraccion.getTipo() == tipo) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

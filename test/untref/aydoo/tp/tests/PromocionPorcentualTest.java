@@ -12,6 +12,7 @@ import org.junit.Test;
 import untref.aydoo.tp.Atraccion;
 import untref.aydoo.tp.Promocion;
 import untref.aydoo.tp.PromocionPorcentual;
+import untref.aydoo.tp.TipoAtraccion;
 
 public class PromocionPorcentualTest {
 
@@ -28,8 +29,8 @@ public class PromocionPorcentualTest {
 		calendario.set(2014, 4, 15); // "2014-05-15"
 		Date hoy = calendario.getTime();
 
-		Promocion promocion = new PromocionPorcentual(atracciones,
-				desde, hasta, descuento);
+		Promocion promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
 
 		Assert.assertFalse(promocion.isVigente(hoy));
 	}
@@ -47,8 +48,8 @@ public class PromocionPorcentualTest {
 		calendario.set(2013, 1, 15); // "2014-02-15"
 		Date hoy = calendario.getTime();
 
-		Promocion promocion = new PromocionPorcentual(atracciones,
-				desde, hasta, descuento);
+		Promocion promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
 
 		Assert.assertFalse(promocion.isVigente(hoy));
 	}
@@ -66,8 +67,8 @@ public class PromocionPorcentualTest {
 		calendario.set(2015, 2, 15); // "2014-03-15"
 		Date hoy = calendario.getTime();
 
-		Promocion promocion = new PromocionPorcentual(atracciones,
-				desde, hasta, descuento);
+		Promocion promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
 
 		Assert.assertTrue(promocion.isVigente(hoy));
 	}
@@ -76,7 +77,7 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver75SiElPrecioDeLasAtraccionesSuman100YLaPromocionEs25() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -93,7 +94,8 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver50SiElPrecioDeLasAtraccionesSuman100YLaPromocionEs50() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION,
+				precioAtraccion));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 50.0;
@@ -110,7 +112,7 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver150SiElPrecioDeLasAtraccionesSuman200YLaPromocionEs25() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 200.0;
-		atracciones.add(new Atraccion(precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -127,7 +129,7 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver0SiLaPromocionEs100() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 300.0;
-		atracciones.add(new Atraccion(precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 100.0;
@@ -144,7 +146,8 @@ public class PromocionPorcentualTest {
 	public void consultarElPrecioDeLaPromocionDeberiaDevolver0SiLaPromocionEs100YElPrecioSeaX() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
-		atracciones.add(new Atraccion(precioAtraccion));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION,
+				precioAtraccion));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 100.0;
@@ -157,5 +160,36 @@ public class PromocionPorcentualTest {
 		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
 	}
 
+	@Test
+	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
+
+		Assert.assertTrue(promocion.hasTipoAtraccion(TipoAtraccion.DEGUSTACION));
+	}
+
+	@Test
+	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
+
+		Assert.assertFalse(promocion.hasTipoAtraccion(TipoAtraccion.PAISAJE));
+	}
 
 }

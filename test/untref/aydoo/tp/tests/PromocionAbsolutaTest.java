@@ -10,7 +10,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import untref.aydoo.tp.Atraccion;
+import untref.aydoo.tp.Promocion;
 import untref.aydoo.tp.PromocionAbsoluta;
+import untref.aydoo.tp.TipoAtraccion;
 
 public class PromocionAbsolutaTest {
 
@@ -27,7 +29,7 @@ public class PromocionAbsolutaTest {
 		calendario.set(2014, 4, 15); // "2014-05-15"
 		Date hoy = calendario.getTime();
 
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
 		Assert.assertFalse(promocion.isVigente(hoy));
@@ -46,7 +48,7 @@ public class PromocionAbsolutaTest {
 		calendario.set(2013, 1, 15); // "2014-02-15"
 		Date hoy = calendario.getTime();
 
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
 		Assert.assertFalse(promocion.isVigente(hoy));
@@ -65,7 +67,7 @@ public class PromocionAbsolutaTest {
 		calendario.set(2015, 2, 15); // "2014-03-15"
 		Date hoy = calendario.getTime();
 
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
 		Assert.assertTrue(promocion.isVigente(hoy));
@@ -78,7 +80,7 @@ public class PromocionAbsolutaTest {
 		Date hasta = new Date();
 		Double costo = 100.0;
 
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
 		Assert.assertEquals(costo, promocion.getPrecio(), 0.000001);
@@ -91,10 +93,42 @@ public class PromocionAbsolutaTest {
 		Date hasta = new Date();
 		Double costo = 200.0;
 
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
 		Assert.assertEquals(costo, promocion.getPrecio(), 0.000001);
+	}
+
+	@Test
+	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double costo = 200.0;
+
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertTrue(promocion.hasTipoAtraccion(TipoAtraccion.DEGUSTACION));
+	}
+
+	@Test
+	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double costo = 200.0;
+
+		Promocion promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertFalse(promocion.hasTipoAtraccion(TipoAtraccion.PAISAJE));
 	}
 
 }
