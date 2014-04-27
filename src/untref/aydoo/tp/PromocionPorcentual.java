@@ -1,47 +1,22 @@
 package untref.aydoo.tp;
 
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
-public class PromocionPorcentual {
+public class PromocionPorcentual extends Promocion {
 
-	private String nombre;
-	private List<Atraccion> atracciones;
-	private Integer periodoVigencia;
+	private Double descuento;
 
-	public PromocionPorcentual(String nombre, Integer periodoVigencia, List<Atraccion> atracciones) {
-
-		this.nombre = nombre;
+	public PromocionPorcentual(List<Atraccion> atracciones, Date desde,
+			Date hasta, Double descuento) {
 		this.atracciones = atracciones;
-		this.periodoVigencia = periodoVigencia;
+		this.desde = desde;
+		this.hasta = hasta;
+		this.descuento = descuento;
 	}
 
-	public Double descuento(Double porcentajeDescuento) {
-
-		Double costoTotal = 0.0;
-
-		Iterator<Atraccion> iterator = this.atracciones.iterator();
-
-		while (iterator.hasNext()) {
-
-			Atraccion atraccion = iterator.next();
-
-			costoTotal = atraccion.getCosto()
-					- (atraccion.getCosto() * (porcentajeDescuento / 100));
-		}
-
-		return costoTotal;
+	public Double getPrecio() {
+		return this.getCostoTotal() * (100.0 - this.descuento) / 100.0;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public Integer getPeriodoVigencia() {
-		return periodoVigencia;
-	}
-
-	public List<Atraccion> getAtracciones() {
-		return this.atracciones;
-	}
 }

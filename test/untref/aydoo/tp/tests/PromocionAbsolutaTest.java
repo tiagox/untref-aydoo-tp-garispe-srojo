@@ -1,50 +1,100 @@
 package untref.aydoo.tp.tests;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import untref.aydoo.tp.Atraccion;
 import untref.aydoo.tp.PromocionAbsoluta;
-import untref.aydoo.tp.TipoAtraccion;
 
 public class PromocionAbsolutaTest {
 
-	private Atraccion atraccion = new Atraccion("Atraccion", 520.0, 230.0,
-			5500.0, 80.0, 1000, TipoAtraccion.PAISAJE);
-	private String nombre = "Promocion Absoluta";
-	private Integer periodoVigencia = 31; // Dias
-	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
-	private PromocionAbsoluta promocionAbsoluta;
+	@Test
+	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2014, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2014, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double costo = 100.0;
 
-	@Before
-	public void setup() {
+		calendario.set(2014, 4, 15); // "2014-05-15"
+		Date hoy = calendario.getTime();
 
-		promocionAbsoluta = new PromocionAbsoluta(this.nombre,
-				this.periodoVigencia, this.atracciones);
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
 
-		promocionAbsoluta.getAtracciones().add(this.atraccion);
-
+		Assert.assertFalse(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElNombreDeberiaDevolverElMismoNombreAsignadoAlCrearla() {
-		Assert.assertEquals(this.nombre, this.promocionAbsoluta.getNombre());
+	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2013, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2013, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double costo = 100.0;
+
+		calendario.set(2013, 1, 15); // "2014-02-15"
+		Date hoy = calendario.getTime();
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertFalse(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElPeriodoDeVigenciaDeberiaDevolverElMismoPeriodoVigenciaAsignadoAlCrearla() {
-		Assert.assertEquals(this.periodoVigencia,
-				this.promocionAbsoluta.getPeriodoVigencia());
+	public void preguntarPorLaVigenciaDeveriaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2015, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2015, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double costo = 100.0;
+
+		calendario.set(2015, 2, 15); // "2014-03-15"
+		Date hoy = calendario.getTime();
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertTrue(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElCostoTotalConDescDeberiaDevolverElCostoTotalMenosElDescuento() {
-		Assert.assertEquals(0.0,
-				this.promocionAbsoluta.descuento(this.atraccion.getCosto()),
-				0.0);
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver100SiElPrecioAsignadoEs100() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double costo = 100.0;
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertEquals(costo, promocion.getPrecio(), 0.000001);
 	}
+
+	@Test
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver200SiElPrecioAsignadoEs200() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double costo = 200.0;
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
+				hasta, costo);
+
+		Assert.assertEquals(costo, promocion.getPrecio(), 0.000001);
+	}
+
 }

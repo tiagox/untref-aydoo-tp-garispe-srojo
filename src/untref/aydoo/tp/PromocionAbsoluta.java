@@ -1,47 +1,21 @@
 package untref.aydoo.tp;
 
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
-public class PromocionAbsoluta {
+public class PromocionAbsoluta extends Promocion {
 
-	private String nombre;
-	private List<Atraccion> atracciones;
-	private Integer periodoVigencia;
+	private Double precio;
 
-	public PromocionAbsoluta(String nombre, Integer periodoVigencia,
-			List<Atraccion> atracciones) {
-
-		this.nombre = nombre;
-		this.atracciones = atracciones;
-		this.periodoVigencia = periodoVigencia;
+	public PromocionAbsoluta(List<Atraccion> atracciones, Date vigenciaDesde,
+			Date vigenciaHasta, Double precio) {
+		this.desde = vigenciaDesde;
+		this.hasta = vigenciaHasta;
+		this.precio = precio;
 	}
 
-	public Double descuento(Double descuentoTotal) {
-
-		Double costoTotal = 0.0;
-
-		Iterator<Atraccion> iterator = this.atracciones.iterator();
-
-		while (iterator.hasNext()) {
-
-			Atraccion atraccion = iterator.next();
-
-			costoTotal = atraccion.getCosto() - descuentoTotal;
-		}
-
-		return costoTotal;
+	public Double getPrecio() {
+		return this.precio;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public Integer getPeriodoVigencia() {
-		return periodoVigencia;
-	}
-
-	public List<Atraccion> getAtracciones() {
-		return this.atracciones;
-	}
 }

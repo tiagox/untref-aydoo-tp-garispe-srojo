@@ -1,54 +1,161 @@
 package untref.aydoo.tp.tests;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import untref.aydoo.tp.Atraccion;
+import untref.aydoo.tp.Promocion;
 import untref.aydoo.tp.PromocionPorcentual;
-import untref.aydoo.tp.TipoAtraccion;
 
 public class PromocionPorcentualTest {
 
-	private Atraccion atraccion = new Atraccion("Atraccion", 100.0, 150.0,
-			2500.0, 120.0, 100, TipoAtraccion.AVENTURA);
+	@Test
+	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2014, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2014, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double descuento = 25.0;
 
-	private String nombre = "Promocion Porcentual";
-	private Integer periodoVigencia = 20; // Dias
-	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
+		calendario.set(2014, 4, 15); // "2014-05-15"
+		Date hoy = calendario.getTime();
 
-	private Double porcentajeDescuento = 40.0;
+		Promocion promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
 
-	private PromocionPorcentual promocionPorcentual;
-
-	@Before
-	public void setup() {
-
-		promocionPorcentual = new PromocionPorcentual(this.nombre,
-				this.periodoVigencia, this.atracciones);
-
-		promocionPorcentual.getAtracciones().add(this.atraccion);
-
+		Assert.assertFalse(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElNombreDeberiaDevolverElMismoNombreAsignadoAlCrearla() {
-		Assert.assertEquals(this.nombre, this.promocionPorcentual.getNombre());
+	public void preguntarPorLaVigenciaDeveriaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2013, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2013, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double descuento = 25.0;
+
+		calendario.set(2013, 1, 15); // "2014-02-15"
+		Date hoy = calendario.getTime();
+
+		Promocion promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertFalse(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElPeriodoDeVigenciaDeberiaDevolverElMismoPeriodoVigenciaAsignadoAlCrearla() {
-		Assert.assertEquals(this.periodoVigencia,
-				this.promocionPorcentual.getPeriodoVigencia());
+	public void preguntarPorLaVigenciaDeveriaDevolverTrueSiLaFechaEstaEntreLasFechasDesdeYHasta() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Calendar calendario = new GregorianCalendar();
+		calendario.set(2015, 2, 1); // "2014-03-01"
+		Date desde = calendario.getTime();
+		calendario.set(2015, 3, 30); // "2014-04-30"
+		Date hasta = calendario.getTime();
+		Double descuento = 25.0;
+
+		calendario.set(2015, 2, 15); // "2014-03-15"
+		Date hoy = calendario.getTime();
+
+		Promocion promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertTrue(promocion.isVigente(hoy));
 	}
 
 	@Test
-	public void pedirElCostoTotalConDescDeberiaDevolverElCostoTotalMenosElDescuentoDe40Porciento() {
-		Assert.assertEquals(1500.0,
-				this.promocionPorcentual.descuento(this.porcentajeDescuento),
-				0.000001);
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver75SiElPrecioDeLasAtraccionesSuman100YLaPromocionEs25() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Double precioAtraccion = 100.0;
+		atracciones.add(new Atraccion(precioAtraccion));
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double precioEsperado = 75.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
 	}
+
+	@Test
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver50SiElPrecioDeLasAtraccionesSuman100YLaPromocionEs50() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Double precioAtraccion = 100.0;
+		atracciones.add(new Atraccion(precioAtraccion));
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 50.0;
+
+		Double precioEsperado = 50.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
+	}
+
+	@Test
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver150SiElPrecioDeLasAtraccionesSuman200YLaPromocionEs25() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Double precioAtraccion = 200.0;
+		atracciones.add(new Atraccion(precioAtraccion));
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double precioEsperado = 150.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
+	}
+
+	@Test
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver0SiLaPromocionEs100() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Double precioAtraccion = 300.0;
+		atracciones.add(new Atraccion(precioAtraccion));
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 100.0;
+
+		Double precioEsperado = 0.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
+	}
+
+	@Test
+	public void consultarElPrecioDeLaPromocionDeberiaDevolver0SiLaPromocionEs100YElPrecioSeaX() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Double precioAtraccion = 100.0;
+		atracciones.add(new Atraccion(precioAtraccion));
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 100.0;
+
+		Double precioEsperado = 0.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(precioEsperado, promocion.getPrecio(), 0.000001);
+	}
+
+
 }

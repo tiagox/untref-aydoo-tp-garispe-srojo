@@ -9,28 +9,17 @@ import untref.aydoo.tp.Usuario;
 
 public class UsuarioTest {
 
-	private String nombre = "Isaac";
-	private String apellido = "Newton";
-	private Double presupuesto = 10000.0;
+	private Double presupuesto = 1000.0;
 	private Double tiempoDisponible = 120.0;
 	private Double velocidadTraslado = 15.0;
 	private TipoAtraccion tipoPreferido = TipoAtraccion.AVENTURA;
+
 	private Usuario usuario;
 
 	@Before
 	public void setup() {
-		this.usuario = new Usuario(nombre, apellido, presupuesto,
+		this.usuario = new Usuario(presupuesto,
 				tiempoDisponible, velocidadTraslado, tipoPreferido);
-	}
-
-	@Test
-	public void pedirElNombreDeberiaDevolverElMismoNombreAsignadoAlCrearlo() {
-		Assert.assertEquals(this.nombre, usuario.getNombre());
-	}
-
-	@Test
-	public void pedirElApellidoDeberiaDevolverElMismoApellidoAsignadoAlCrearlo() {
-		Assert.assertEquals(this.apellido, usuario.getApellido());
 	}
 
 	@Test
