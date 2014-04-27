@@ -26,6 +26,7 @@ public class GeneradorSugerenciasTest {
 	private Promocion promocionAbsolutaVigente;
 	private Promocion promocionPorcentualVigente;
 	private Promocion promocionAxBNoVigente;
+	private Promocion promocionAbsolutaVigenteBarata;
 
 	private List<Promocion> promocionesDisponibles;
 
@@ -43,10 +44,10 @@ public class GeneradorSugerenciasTest {
 				TipoAtraccion.DEGUSTACION, 50.0);
 		Atraccion atraccionDePaisaje = new Atraccion(TipoAtraccion.PAISAJE,
 				100.0);
-//		Atraccion atraccionDeAventuraCara = new Atraccion(
-//				TipoAtraccion.AVENTURA, 500.0);
-//		Atraccion atraccionDeDegustacionCara = new Atraccion(
-//				TipoAtraccion.DEGUSTACION, 700.0);
+		Atraccion atraccionDeAventuraCara = new Atraccion(
+				TipoAtraccion.AVENTURA, 500.0);
+		// Atraccion atraccionDeDegustacionCara = new Atraccion(
+		// TipoAtraccion.DEGUSTACION, 700.0);
 		Atraccion atraccionDePaisajeCara = new Atraccion(TipoAtraccion.PAISAJE,
 				400.0);
 
@@ -55,6 +56,7 @@ public class GeneradorSugerenciasTest {
 		this.calendario.set(2014, 3, 30); // "2014-04-30"
 		Date hasta = this.calendario.getTime();
 
+		// Promoción Absoluta Común
 		List<Atraccion> atraccionesPromocionAbsoluta = new ArrayList<Atraccion>();
 		atraccionesPromocionAbsoluta.add(atraccionDeAventura);
 		atraccionesPromocionAbsoluta.add(atraccionDeDegustacion);
@@ -65,15 +67,26 @@ public class GeneradorSugerenciasTest {
 		this.promocionAbsolutaVigente = new PromocionAbsoluta(
 				atraccionesPromocionAbsoluta, desde, hasta, precio);
 
-		List<Atraccion> atraccionesPromocionPorcentual = new ArrayList<Atraccion>();
-		atraccionesPromocionAbsoluta.add(atraccionDeAventura);
+		// Promoción Absoluta Barata.
+		List<Atraccion> atraccionesPromocionAbsolutaBarata = new ArrayList<Atraccion>();
 		atraccionesPromocionAbsoluta.add(atraccionDeDegustacion);
-		atraccionesPromocionAbsoluta.add(atraccionDePaisaje);
+		atraccionesPromocionAbsoluta.add(atraccionDeAventuraCara);
+
+		precio = 280.0;
+		this.promocionAbsolutaVigenteBarata = new PromocionAbsoluta(
+				atraccionesPromocionAbsolutaBarata, desde, hasta, precio);
+
+		// Promoción Porcentual Común.
+		List<Atraccion> atraccionesPromocionPorcentual = new ArrayList<Atraccion>();
+		atraccionesPromocionPorcentual.add(atraccionDeAventura);
+		atraccionesPromocionPorcentual.add(atraccionDeDegustacion);
+		atraccionesPromocionPorcentual.add(atraccionDePaisaje);
 
 		Double descuento = 40.0;
 		this.promocionPorcentualVigente = new PromocionPorcentual(
 				atraccionesPromocionPorcentual, desde, hasta, descuento);
 
+		// Promoción AxB Común No vigente.
 		Double costoAtraccionGratis = 100.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
 				costoAtraccionGratis);
@@ -84,14 +97,19 @@ public class GeneradorSugerenciasTest {
 		hasta = this.calendario.getTime();
 
 		List<Atraccion> atraccionesPromocionAxB = new ArrayList<Atraccion>();
+		atraccionesPromocionAxB.add(atraccionDeAventura);
+		atraccionesPromocionAxB.add(atraccionDeDegustacion);
+		atraccionesPromocionAxB.add(atraccionDePaisaje);
 
 		this.promocionAxBNoVigente = new PromocionAxB(atraccionesPromocionAxB,
 				desde, hasta, atraccionGratis);
 
+		// Lista completa de promociones disponibles.
 		this.promocionesDisponibles = new ArrayList<Promocion>();
 		this.promocionesDisponibles.add(promocionAbsolutaVigente);
 		this.promocionesDisponibles.add(promocionPorcentualVigente);
 		this.promocionesDisponibles.add(promocionAxBNoVigente);
+		this.promocionesDisponibles.add(promocionAbsolutaVigenteBarata);
 	}
 
 	@Before
@@ -146,7 +164,9 @@ public class GeneradorSugerenciasTest {
 				this.usuario, this.diaDeVisita);
 
 		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.hasTipoAtraccion(this.usuario.getTipoPreferido()));
+			Assert.assertTrue(promocion.hasTipoAtraccion(this.usuario
+					.getTipoPreferido()));
 		}
 	}
+
 }
