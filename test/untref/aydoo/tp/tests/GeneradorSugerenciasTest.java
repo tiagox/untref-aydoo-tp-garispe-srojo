@@ -221,7 +221,7 @@ public class GeneradorSugerenciasTest {
 			Double tiempoViaje = promocion.getDistanciaAtraccionMasCercana(
 					this.usuario.getLatitud(), this.usuario.getLongitud())
 					/ this.usuario.getVelocidadTraslado();
-			
+
 			Assert.assertTrue(tiempoViaje <= 1.0);
 		}
 	}
