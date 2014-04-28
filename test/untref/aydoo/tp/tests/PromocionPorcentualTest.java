@@ -258,4 +258,72 @@ public class PromocionPorcentualTest {
 		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
 	}
 
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercana() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0,
+				100.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
+				80.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 90.0,
+				0.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double latitud = 0.0;
+		Double longitud = 0.0;
+		Double distanciaEsperada = 80.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
+
+		Assert.assertEquals(distanciaEsperada,
+				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
+	}
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercanaCualquieraSea() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0,
+				800.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
+				80.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 70.0,
+				0.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double latitud = 0.0;
+		Double longitud = 0.0;
+		Double distanciaEsperada = 70.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
+				hasta, descuento);
+
+		Assert.assertEquals(distanciaEsperada,
+				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
+	}
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercanaSiNoHayAtraccionesDebeDevolverMenos1() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+		Double descuento = 25.0;
+
+		Double latitud = 0.0;
+		Double longitud = 0.0;
+		Double distanciaEsperada = -1.0;
+
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
+
+		Assert.assertEquals(distanciaEsperada,
+				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
+	}
+
 }

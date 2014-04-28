@@ -23,9 +23,19 @@ public class PromocionAxB extends Promocion {
 		return super.hasTipoAtraccion(tipo)
 				|| (this.atraccionGratis.getTipo() == tipo);
 	}
-	
+
 	public Double getDuracion() {
 		return super.getDuracion() + this.atraccionGratis.getDuracion();
 	}
 
+	public Double getDistanciaAtraccionMasCercana(Double latitud,
+			Double longitud) {
+		if (super.getDistanciaAtraccionMasCercana(latitud, longitud) != -1) {
+			return Math.min(
+					super.getDistanciaAtraccionMasCercana(latitud, longitud),
+					this.atraccionGratis.calcularDistanciaA(latitud, longitud));
+		} else {
+			return this.atraccionGratis.calcularDistanciaA(latitud, longitud);
+		}
+	}
 }

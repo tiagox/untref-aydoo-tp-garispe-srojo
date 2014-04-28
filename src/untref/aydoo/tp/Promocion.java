@@ -42,4 +42,23 @@ public abstract class Promocion {
 		return duracionTotal;
 	}
 
+	public Double getDistanciaAtraccionMasCercana(Double latitud,
+			Double longitud) {
+		Double distanciaMasCercana;
+		if (this.atracciones.size() > 0) {
+			distanciaMasCercana = this.atracciones.get(0).calcularDistanciaA(
+					latitud, longitud);
+			for (Atraccion atraccion : this.atracciones) {
+				if (distanciaMasCercana > atraccion.calcularDistanciaA(latitud,
+						longitud)) {
+					distanciaMasCercana = atraccion.calcularDistanciaA(latitud,
+							longitud);
+				}
+			}
+		} else {
+			distanciaMasCercana = -1.0;
+		}
+		return distanciaMasCercana;
+	}
+
 }

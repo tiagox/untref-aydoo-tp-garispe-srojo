@@ -301,15 +301,110 @@ public class PromocionAxBTest {
 		Double duracion = 0.0;
 		Double latitud = 0.0;
 		Double longitud = 0.0;
-		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA,
-				costoAtraccionGratis, duracion, latitud, longitud);
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA, costoAtraccionGratis, duracion, latitud, longitud);
 
-		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta,
-				atraccionGratis);
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta, atraccionGratis);
 
 		Double duracionEsperada = 0.0;
 
 		Assert.assertEquals(duracionEsperada, promocion.getDuracion(), 0.000001);
+	}
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercana() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 100.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0, 80.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 90.0, 0.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 0.0;
+		Double latitud = 110.0;
+		Double longitud = 0.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA, costoAtraccionGratis, duracion, latitud, longitud);
+
+		Double latitudUsuario = 0.0;
+		Double longitudUsuario = 0.0;
+		Double distanciaEsperada = 80.0;
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta, atraccionGratis);
+
+		Assert.assertEquals(distanciaEsperada, promocion.getDistanciaAtraccionMasCercana(latitudUsuario, longitudUsuario));
+	}
+
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercanaIncluyendoLaGratuita() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 100.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0, 80.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 90.0, 0.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 0.0;
+		Double latitud = 70.0;
+		Double longitud = 0.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA, costoAtraccionGratis, duracion, latitud, longitud);
+
+		Double latitudUsuario = 0.0;
+		Double longitudUsuario = 0.0;
+		Double distanciaEsperada = 70.0;
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta, atraccionGratis);
+
+		Assert.assertEquals(distanciaEsperada, promocion.getDistanciaAtraccionMasCercana(latitudUsuario, longitudUsuario));
+	}
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercanaCualquieraSea() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 800.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0, 80.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 70.0, 0.0));
+
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 0.0;
+		Double latitud = 110.0;
+		Double longitud = 0.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA, costoAtraccionGratis, duracion, latitud, longitud);
+
+		Double latitudUsuario = 0.0;
+		Double longitudUsuario = 0.0;
+		Double distanciaEsperada = 70.0;
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta, atraccionGratis);
+
+		Assert.assertEquals(distanciaEsperada, promocion.getDistanciaAtraccionMasCercana(latitudUsuario, longitudUsuario));
+	}
+
+	@Test
+	public void consultarLaDistanciaALaAtraccionMasCercanaSiNoHayAtraccionesDebeDevolverLaDistanciaALaGratuita() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		Date desde = new Date();
+		Date hasta = new Date();
+
+		Double costoAtraccionGratis = 100.0;
+		Double duracion = 0.0;
+		Double latitud = 110.0;
+		Double longitud = 0.0;
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.AVENTURA, costoAtraccionGratis, duracion, latitud, longitud);
+
+		Double latitudUsuario = 0.0;
+		Double longitudUsuario = 0.0;
+		Double distanciaEsperada = 110.0;
+
+		PromocionAxB promocion = new PromocionAxB(atracciones, desde, hasta, atraccionGratis);
+
+		Assert.assertEquals(distanciaEsperada, promocion.getDistanciaAtraccionMasCercana(latitudUsuario, longitudUsuario));
 	}
 
 }
