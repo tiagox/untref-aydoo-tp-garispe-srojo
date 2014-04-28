@@ -27,6 +27,7 @@ public class GeneradorSugerenciasTest {
 	private Promocion promocionPorcentualVigente;
 	private Promocion promocionAxBNoVigente;
 	private Promocion promocionAbsolutaVigenteBarata;
+	private Promocion promocionPorcentualVigenteBarata2;
 	private Promocion promocionPorcentualVigenteBarata;
 
 	private List<Promocion> promocionesDisponibles;
@@ -40,17 +41,17 @@ public class GeneradorSugerenciasTest {
 	public void setUpPromocionesDisponibles() {
 
 		Atraccion atraccionDeAventura = new Atraccion(TipoAtraccion.AVENTURA,
-				100.0, 8.0, 0.0, 0.0);
+				100.0, 8.0, 10.0, 0.0);
 		Atraccion atraccionDeDegustacion = new Atraccion(
 				TipoAtraccion.DEGUSTACION, 50.0, 2.0, 100.0, 100.0);
 		Atraccion atraccionDePaisaje = new Atraccion(TipoAtraccion.PAISAJE,
 				100.0, 4.0, -100.0, 100.0);
 		Atraccion atraccionDeAventuraCara = new Atraccion(
 				TipoAtraccion.AVENTURA, 500.0, 24.0, 100.0, -100.0);
-		// Atraccion atraccionDeDegustacionCara = new
-		// Atraccion(TipoAtraccion.DEGUSTACION, 700.0, -100.0, -100.0);
 		Atraccion atraccionDePaisajeCara = new Atraccion(TipoAtraccion.PAISAJE,
 				400.0, 5.0, 200.0, 100.0);
+		Atraccion atraccionDeAventura2 = new Atraccion(TipoAtraccion.AVENTURA,
+				100.0, 8.0, 100.0, 100.0);
 
 		this.calendario.set(2014, 2, 1); // "2014-03-01"
 		Date desde = this.calendario.getTime();
@@ -98,6 +99,15 @@ public class GeneradorSugerenciasTest {
 		this.promocionPorcentualVigenteBarata = new PromocionPorcentual(
 				atraccionesPromocionPorcentualBarata, desde, hasta, descuento);
 
+		// Promoción Porcentual Barata 2.
+		List<Atraccion> atraccionesPromocionPorcentualVigenteBarata2 = new ArrayList<Atraccion>();
+		atraccionesPromocionPorcentualVigenteBarata2.add(atraccionDeAventura2);
+
+		descuento = 80.0;
+		this.promocionPorcentualVigenteBarata2 = new PromocionPorcentual(
+				atraccionesPromocionPorcentualVigenteBarata2, desde, hasta,
+				descuento);
+
 		// Promoción AxB Común No vigente.
 		Double costoAtraccionGratis = 100.0;
 		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
@@ -123,6 +133,7 @@ public class GeneradorSugerenciasTest {
 		this.promocionesDisponibles.add(promocionAxBNoVigente);
 		this.promocionesDisponibles.add(promocionAbsolutaVigenteBarata);
 		this.promocionesDisponibles.add(promocionPorcentualVigenteBarata);
+		this.promocionesDisponibles.add(promocionPorcentualVigenteBarata2);
 	}
 
 	@Before
@@ -198,4 +209,20 @@ public class GeneradorSugerenciasTest {
 		}
 	}
 
+	@Test
+	public void debeSugerirSoloPromocionesCuyaAtraccionMasCercaQueEstenAMenosDeUnaHoraDeViaje() {
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
+				this.promocionesDisponibles);
+
+		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+				this.usuario, this.diaDeVisita);
+
+		for (Promocion promocion : sugerencias) {
+			Double tiempoViaje = promocion.getDistanciaAtraccionMasCercana(
+					this.usuario.getLatitud(), this.usuario.getLongitud())
+					/ this.usuario.getVelocidadTraslado();
+			
+			Assert.assertTrue(tiempoViaje <= 1.0);
+		}
+	}
 }
