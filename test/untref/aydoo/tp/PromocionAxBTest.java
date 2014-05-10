@@ -1,4 +1,4 @@
-package untref.aydoo.tp.tests;
+package untref.aydoo.tp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,10 +8,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import untref.aydoo.tp.Atraccion;
-import untref.aydoo.tp.PromocionAxB;
-import untref.aydoo.tp.TipoAtraccion;
 
 public class PromocionAxBTest {
 

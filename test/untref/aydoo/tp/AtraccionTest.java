@@ -1,10 +1,7 @@
-package untref.aydoo.tp.tests;
+package untref.aydoo.tp;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import untref.aydoo.tp.Atraccion;
-import untref.aydoo.tp.TipoAtraccion;
 
 public class AtraccionTest {
 
