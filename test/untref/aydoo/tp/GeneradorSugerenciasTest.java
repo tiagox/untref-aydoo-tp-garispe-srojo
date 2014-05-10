@@ -21,7 +21,7 @@ public class GeneradorSugerenciasTest {
 	private Promocion promocionPorcentualVigenteBarata2;
 	private Promocion promocionPorcentualVigenteBarata;
 
-	private List<Promocion> promocionesDisponibles;
+	private List<Sugerible> promocionesDisponibles;
 
 	private Date diaDeVisita;
 
@@ -118,7 +118,7 @@ public class GeneradorSugerenciasTest {
 				desde, hasta, atraccionGratis);
 
 		// Lista completa de promociones disponibles.
-		this.promocionesDisponibles = new ArrayList<Promocion>();
+		this.promocionesDisponibles = new ArrayList<Sugerible>();
 		this.promocionesDisponibles.add(promocionAbsolutaVigente);
 		this.promocionesDisponibles.add(promocionPorcentualVigente);
 		this.promocionesDisponibles.add(promocionAxBNoVigente);
@@ -150,11 +150,11 @@ public class GeneradorSugerenciasTest {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
 				this.promocionesDisponibles);
 
-		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
 				this.usuario, this.diaDeVisita);
 
-		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.isVigente(this.diaDeVisita));
+		for (Sugerible sugerencia : sugerencias) {
+			Assert.assertTrue(sugerencia.isVigente(this.diaDeVisita));
 		}
 	}
 
@@ -163,11 +163,11 @@ public class GeneradorSugerenciasTest {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
 				this.promocionesDisponibles);
 
-		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
 				this.usuario, this.diaDeVisita);
 
-		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.getPrecio() < this.usuario
+		for (Sugerible sugerencia : sugerencias) {
+			Assert.assertTrue(sugerencia.getPrecio() < this.usuario
 					.getPresupuesto());
 		}
 	}
@@ -177,11 +177,11 @@ public class GeneradorSugerenciasTest {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
 				this.promocionesDisponibles);
 
-		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
 				this.usuario, this.diaDeVisita);
 
-		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.hasTipoAtraccion(this.usuario
+		for (Sugerible sugerencia : sugerencias) {
+			Assert.assertTrue(sugerencia.hasTipoAtraccion(this.usuario
 					.getTipoPreferido()));
 		}
 	}
@@ -191,11 +191,11 @@ public class GeneradorSugerenciasTest {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
 				this.promocionesDisponibles);
 
-		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
 				this.usuario, this.diaDeVisita);
 
-		for (Promocion promocion : sugerencias) {
-			Assert.assertTrue(promocion.getDuracion() <= this.usuario
+		for (Sugerible sugerencia : sugerencias) {
+			Assert.assertTrue(sugerencia.getDuracion() <= this.usuario
 					.getTiempoDisponible());
 		}
 	}
@@ -205,11 +205,11 @@ public class GeneradorSugerenciasTest {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
 				this.promocionesDisponibles);
 
-		List<Promocion> sugerencias = generadorSugerencias.getSugerencias(
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
 				this.usuario, this.diaDeVisita);
 
-		for (Promocion promocion : sugerencias) {
-			Double tiempoViaje = promocion.getDistanciaAtraccionMasCercana(
+		for (Sugerible sugerencia : sugerencias) {
+			Double tiempoViaje = sugerencia.getDistanciaAtraccionMasCercana(
 					this.usuario.getLatitud(), this.usuario.getLongitud())
 					/ this.usuario.getVelocidadTraslado();
 

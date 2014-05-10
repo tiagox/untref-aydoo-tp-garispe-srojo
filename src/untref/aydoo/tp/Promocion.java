@@ -3,7 +3,7 @@ package untref.aydoo.tp;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Promocion {
+public abstract class Promocion implements Sugerible {
 
 	protected List<Atraccion> atracciones;
 	protected Date desde;
