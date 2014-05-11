@@ -33,9 +33,11 @@ public class PromocionAxB extends Promocion {
 		if (super.getDistanciaAtraccionMasCercana(latitud, longitud) != -1) {
 			return Math.min(
 					super.getDistanciaAtraccionMasCercana(latitud, longitud),
-					this.atraccionGratis.calcularDistanciaA(latitud, longitud));
+					this.atraccionGratis.getUbicacion().calcularDistanciaA(
+							latitud, longitud));
 		} else {
-			return this.atraccionGratis.calcularDistanciaA(latitud, longitud);
+			return this.atraccionGratis.getUbicacion().calcularDistanciaA(
+					latitud, longitud);
 		}
 	}
 }

@@ -12,7 +12,6 @@ public interface Sugerible {
 
 	public Double getDuracion();
 
-	public Double getDistanciaAtraccionMasCercana(Double latitud,
-			Double longitud);
+	public Double getDistanciaAtraccionMasCercana(Double latitud, Double longitud);
 
 }

@@ -73,7 +73,7 @@ public class PromocionPorcentualTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
 		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
-				4.0, 0.0, 0.0));
+				4.0, 100, new Coordenada(0.0, 0.0)));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -91,7 +91,7 @@ public class PromocionPorcentualTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
 		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION,
-				precioAtraccion, 4.0, 0.0, 0.0));
+				precioAtraccion, 4.0, 50, new Coordenada(0.0, 0.0)));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 50.0;
@@ -109,7 +109,7 @@ public class PromocionPorcentualTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 200.0;
 		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, precioAtraccion,
-				4.0, 0.0, 0.0));
+				4.0, 200, new Coordenada(0.0, 0.0)));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 25.0;
@@ -127,7 +127,7 @@ public class PromocionPorcentualTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 300.0;
 		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, precioAtraccion,
-				4.0, 0.0, 0.0));
+				4.0, 200, new Coordenada(0.0, 0.0)));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 100.0;
@@ -145,7 +145,7 @@ public class PromocionPorcentualTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Double precioAtraccion = 100.0;
 		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION,
-				precioAtraccion, 4.0, 0.0, 0.0));
+				precioAtraccion, 4.0, 50, new Coordenada(0.0, 0.0)));
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double descuento = 100.0;
@@ -161,10 +161,10 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 0.0,
-				0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 3.0,
-				0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 100,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 3.0, 50,
+				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -179,10 +179,10 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 2.0, 0.0,
-				0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 1.0,
-				0.0, 0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 2.0, 100,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 1.0, 90,
+				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -197,12 +197,12 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 0.0,
-				0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0,
-				0.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 0.0,
-				0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 200,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 200,
+				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -219,12 +219,12 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarLaDuracionDeberiaDevolverLaSumaDeLaDuracionDeTodasLasAtraccionesCualquierSea() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 0.0,
-				0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
-				0.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 0.0,
-				0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 200,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50,
+				new Coordenada(0.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 200,
+				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -256,12 +256,12 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarLaDistanciaALaAtraccionMasCercana() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0,
-				100.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
-				80.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 90.0,
-				0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 200,
+				new Coordenada(100.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50,
+				new Coordenada(80.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 200,
+				new Coordenada(90.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -271,8 +271,8 @@ public class PromocionPorcentualTest {
 		Double longitud = 0.0;
 		Double distanciaEsperada = 80.0;
 
-		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
-				hasta, descuento);
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
 
 		Assert.assertEquals(distanciaEsperada,
 				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
@@ -281,12 +281,12 @@ public class PromocionPorcentualTest {
 	@Test
 	public void consultarLaDistanciaALaAtraccionMasCercanaCualquieraSea() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0,
-				800.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
-				80.0, 0.0));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 70.0,
-				0.0));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 200,
+				new Coordenada(800.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50,
+				new Coordenada(80.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 200,
+				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
@@ -296,8 +296,8 @@ public class PromocionPorcentualTest {
 		Double longitud = 0.0;
 		Double distanciaEsperada = 70.0;
 
-		PromocionPorcentual promocion = new PromocionPorcentual(atracciones, desde,
-				hasta, descuento);
+		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
+				desde, hasta, descuento);
 
 		Assert.assertEquals(distanciaEsperada,
 				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));

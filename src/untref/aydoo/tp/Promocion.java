@@ -46,13 +46,13 @@ public abstract class Promocion implements Sugerible {
 			Double longitud) {
 		Double distanciaMasCercana;
 		if (this.atracciones.size() > 0) {
-			distanciaMasCercana = this.atracciones.get(0).calcularDistanciaA(
-					latitud, longitud);
+			distanciaMasCercana = this.atracciones.get(0).getUbicacion()
+					.calcularDistanciaA(latitud, longitud);
 			for (Atraccion atraccion : this.atracciones) {
-				if (distanciaMasCercana > atraccion.calcularDistanciaA(latitud,
-						longitud)) {
-					distanciaMasCercana = atraccion.calcularDistanciaA(latitud,
-							longitud);
+				if (distanciaMasCercana > atraccion.getUbicacion()
+						.calcularDistanciaA(latitud, longitud)) {
+					distanciaMasCercana = atraccion.getUbicacion()
+							.calcularDistanciaA(latitud, longitud);
 				}
 			}
 		} else {

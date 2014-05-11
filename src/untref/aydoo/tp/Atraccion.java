@@ -5,16 +5,16 @@ public class Atraccion {
 	private TipoAtraccion tipo;
 	private Double costo;
 	private Double duracion;
-	private Double latitud;
-	private Double longitud;
+	private Integer cupoVisitantes;
+	private Coordenada ubicacion;
 
 	public Atraccion(TipoAtraccion tipo, Double costo, Double duracion,
-			Double latitud, Double longitud) {
+			Integer cupoVisitantes, Coordenada ubicacion) {
 		this.tipo = tipo;
 		this.costo = costo;
 		this.duracion = duracion;
-		this.latitud = latitud;
-		this.longitud = longitud;
+		this.cupoVisitantes = cupoVisitantes;
+		this.ubicacion = ubicacion;
 	}
 
 	public Double getCosto() {
@@ -29,9 +29,12 @@ public class Atraccion {
 		return this.duracion;
 	}
 
-	public Double calcularDistanciaA(Double latitud, Double longitud) {
-		return Math.sqrt(Math.pow(Math.abs(this.latitud - latitud), 2)
-				+ Math.pow(Math.abs(this.longitud - longitud), 2));
+	public Integer getCupoVisitantes() {
+		return this.cupoVisitantes;
+	}
+
+	public Coordenada getUbicacion() {
+		return this.ubicacion;
 	}
 
 }

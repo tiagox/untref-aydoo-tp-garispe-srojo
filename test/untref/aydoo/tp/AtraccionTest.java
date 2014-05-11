@@ -9,10 +9,12 @@ public class AtraccionTest {
 	public void pedirElCostoDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
 		Double duracion = 1.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(costo, atraccion.getCosto());
 	}
@@ -21,10 +23,12 @@ public class AtraccionTest {
 	public void pedirElCostoDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 200.0;
 		Double duracion = 1.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(costo, atraccion.getCosto());
 	}
@@ -33,10 +37,12 @@ public class AtraccionTest {
 	public void pedirElTipoDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
 		Double duracion = 1.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.DEGUSTACION, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(TipoAtraccion.DEGUSTACION, atraccion.getTipo());
 	}
@@ -45,10 +51,12 @@ public class AtraccionTest {
 	public void pedirElTipoDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 100.0;
 		Double duracion = 1.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(TipoAtraccion.AVENTURA, atraccion.getTipo());
 	}
@@ -57,10 +65,12 @@ public class AtraccionTest {
 	public void pedirLaDuracionDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
 		Double duracion = 2.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
-		Atraccion atraccion = new Atraccion(TipoAtraccion.DEGUSTACION, costo,
-				duracion, latitud, longitud);
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(duracion, atraccion.getDuracion());
 	}
@@ -69,44 +79,70 @@ public class AtraccionTest {
 	public void pedirLaDuracionDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 100.0;
 		Double duracion = 5.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
 		Assert.assertEquals(duracion, atraccion.getDuracion());
 	}
 
 	@Test
-	public void medirLaDistanciaDesdeLaMismaHubicacionDeLaAtraccionDeberiaDevolver0() {
+	public void pedirElCupoDeVisitantesDeberiaDevolverElMismoValorAsignadoAlCrearla() {
 		Double costo = 100.0;
-		Double duracion = 5.0;
+		Double duracion = 2.0;
+		Integer cupoVisitantes = 150;
 		Double latitud = 100.0;
 		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
-		Double distanciaEsperada = 0.0;
-
-		Assert.assertEquals(distanciaEsperada,
-				atraccion.calcularDistanciaA(latitud, longitud));
+		Assert.assertEquals(cupoVisitantes, atraccion.getCupoVisitantes());
 	}
 
 	@Test
-	public void medirLaDistanciaDeberiaDevolverLaDistanciaEnLineaRecta() {
+	public void pedirElCupoDeVisitantesDeberiaDevolverElValorAsignadoCualquieraSea() {
 		Double costo = 100.0;
 		Double duracion = 5.0;
-		Double latitud = -100.0;
-		Double longitud = 200.0;
+		Integer cupoVisitantes = 150;
+		Double latitud = 100.0;
+		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
-				duracion, latitud, longitud);
+				duracion, cupoVisitantes, ubicacion);
 
-		Double latitudUsuario = 200.0;
-		Double longitudUsuario = 600.0;
-		Double distanciaEsperada = 500.0;
+		Assert.assertEquals(cupoVisitantes, atraccion.getCupoVisitantes());
+	}
 
-		Assert.assertEquals(distanciaEsperada,
-				atraccion.calcularDistanciaA(latitudUsuario, longitudUsuario));
+	@Test
+	public void pedirLaUbicacionDeberiaDevolverElMismoValorAsignadoAlCrearla() {
+		Double costo = 100.0;
+		Double duracion = 2.0;
+		Integer cupoVisitantes = 150;
+		Double latitud = 100.0;
+		Double longitud = 100.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion, cupoVisitantes, ubicacion);
+
+		Assert.assertEquals(ubicacion, atraccion.getUbicacion());
+	}
+
+	@Test
+	public void pedirLaUbicacionDeberiaDevolverElValorAsignadoCualquieraSea() {
+		Double costo = 100.0;
+		Double duracion = 5.0;
+		Integer cupoVisitantes = 150;
+		Double latitud = 1100.0;
+		Double longitud = 140.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
+		Atraccion atraccion = new Atraccion(TipoAtraccion.AVENTURA, costo,
+				duracion, cupoVisitantes, ubicacion);
+
+		Assert.assertEquals(ubicacion, atraccion.getUbicacion());
 	}
 
 }
