@@ -230,7 +230,7 @@ public class PromocionPorcentualTest {
 		Date hasta = new Date();
 		Double descuento = 25.0;
 
-		Double duracionEsperada = 30.0;
+		Double duracionEsperada = 12.0;
 
 		PromocionPorcentual promocion = new PromocionPorcentual(atracciones,
 				desde, hasta, descuento);
@@ -286,7 +286,7 @@ public class PromocionPorcentualTest {
 		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50,
 				new Coordenada(80.0, 0.0)));
 		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 6.0, 200,
-				new Coordenada(0.0, 0.0)));
+				new Coordenada(70.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
