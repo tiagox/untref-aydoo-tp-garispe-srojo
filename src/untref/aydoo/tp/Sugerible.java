@@ -1,6 +1,7 @@
 package untref.aydoo.tp;
 
 import java.util.Date;
+import java.util.List;
 
 public interface Sugerible {
 
@@ -8,10 +9,10 @@ public interface Sugerible {
 
 	public Double getPrecio();
 
-	public Boolean hasTipoAtraccion(TipoAtraccion tipoPreferido);
-
 	public Double getDuracion();
 
-	public Double getDistanciaAtraccionMasCercana(Double latitud, Double longitud);
+	public List<TipoAtraccion> getListaTiposAtraccion();
+
+	public List<Coordenada> getListaUbicaciones();
 
 }

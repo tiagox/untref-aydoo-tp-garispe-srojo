@@ -31,18 +31,12 @@ public class GeneradorSugerenciasTest {
 	@Before
 	public void setUpPromocionesDisponibles() {
 
-		Atraccion atraccionDeAventura = new Atraccion(TipoAtraccion.AVENTURA,
-				100.0, 8.0, 200, new Coordenada(10.0, 0.0));
-		Atraccion atraccionDeDegustacion = new Atraccion(
-				TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50, new Coordenada(100.0, 100.0));
-		Atraccion atraccionDePaisaje = new Atraccion(TipoAtraccion.PAISAJE,
-				100.0, 4.0, 150, new Coordenada(-100.0, 100.0));
-		Atraccion atraccionDeAventuraCara = new Atraccion(
-				TipoAtraccion.AVENTURA, 500.0, 24.0, 170, new Coordenada(100.0, -100.0));
-		Atraccion atraccionDePaisajeCara = new Atraccion(TipoAtraccion.PAISAJE,
-				400.0, 5.0, 100, new Coordenada(200.0, 100.0));
-		Atraccion atraccionDeAventura2 = new Atraccion(TipoAtraccion.AVENTURA,
-				100.0, 8.0, 90, new Coordenada(100.0, 100.0));
+		Atraccion atraccionDeAventura = new Atraccion(TipoAtraccion.AVENTURA, 100.0, 8.0, 200, new Coordenada(10.0, 0.0));
+		Atraccion atraccionDeDegustacion = new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 50, new Coordenada(100.0, 100.0));
+		Atraccion atraccionDePaisaje = new Atraccion(TipoAtraccion.PAISAJE, 100.0, 4.0, 150, new Coordenada(-100.0, 100.0));
+		Atraccion atraccionDeAventuraCara = new Atraccion(TipoAtraccion.AVENTURA, 500.0, 24.0, 170, new Coordenada(100.0, -100.0));
+		Atraccion atraccionDePaisajeCara = new Atraccion(TipoAtraccion.PAISAJE, 400.0, 5.0, 100, new Coordenada(200.0, 100.0));
+		Atraccion atraccionDeAventura2 = new Atraccion(TipoAtraccion.AVENTURA, 100.0, 8.0, 90, new Coordenada(100.0, 100.0));
 
 		this.calendario.set(2014, 2, 1); // "2014-03-01"
 		Date desde = this.calendario.getTime();
@@ -57,8 +51,7 @@ public class GeneradorSugerenciasTest {
 		atraccionesPromocionAbsoluta.add(atraccionDePaisajeCara);
 
 		Double precio = 450.0;
-		this.promocionAbsolutaVigente = new PromocionAbsoluta(
-				atraccionesPromocionAbsoluta, desde, hasta, precio);
+		this.promocionAbsolutaVigente = new PromocionAbsoluta(atraccionesPromocionAbsoluta, desde, hasta, precio);
 
 		// Promoción Absoluta Barata.
 		List<Atraccion> atraccionesPromocionAbsolutaBarata = new ArrayList<Atraccion>();
@@ -66,8 +59,7 @@ public class GeneradorSugerenciasTest {
 		atraccionesPromocionAbsoluta.add(atraccionDeAventuraCara);
 
 		precio = 280.0;
-		this.promocionAbsolutaVigenteBarata = new PromocionAbsoluta(
-				atraccionesPromocionAbsolutaBarata, desde, hasta, precio);
+		this.promocionAbsolutaVigenteBarata = new PromocionAbsoluta(atraccionesPromocionAbsolutaBarata, desde, hasta, precio);
 
 		// Promoción Porcentual Común.
 		List<Atraccion> atraccionesPromocionPorcentual = new ArrayList<Atraccion>();
@@ -76,8 +68,7 @@ public class GeneradorSugerenciasTest {
 		atraccionesPromocionPorcentual.add(atraccionDePaisaje);
 
 		Double descuento = 40.0;
-		this.promocionPorcentualVigente = new PromocionPorcentual(
-				atraccionesPromocionPorcentual, desde, hasta, descuento);
+		this.promocionPorcentualVigente = new PromocionPorcentual(atraccionesPromocionPorcentual, desde, hasta, descuento);
 
 		// Promoción Porcentual Barata.
 		List<Atraccion> atraccionesPromocionPorcentualBarata = new ArrayList<Atraccion>();
@@ -87,22 +78,18 @@ public class GeneradorSugerenciasTest {
 		atraccionesPromocionPorcentualBarata.add(atraccionDePaisajeCara);
 
 		descuento = 80.0;
-		this.promocionPorcentualVigenteBarata = new PromocionPorcentual(
-				atraccionesPromocionPorcentualBarata, desde, hasta, descuento);
+		this.promocionPorcentualVigenteBarata = new PromocionPorcentual(atraccionesPromocionPorcentualBarata, desde, hasta, descuento);
 
 		// Promoción Porcentual Barata 2.
 		List<Atraccion> atraccionesPromocionPorcentualVigenteBarata2 = new ArrayList<Atraccion>();
 		atraccionesPromocionPorcentualVigenteBarata2.add(atraccionDeAventura2);
 
 		descuento = 80.0;
-		this.promocionPorcentualVigenteBarata2 = new PromocionPorcentual(
-				atraccionesPromocionPorcentualVigenteBarata2, desde, hasta,
-				descuento);
+		this.promocionPorcentualVigenteBarata2 = new PromocionPorcentual(atraccionesPromocionPorcentualVigenteBarata2, desde, hasta, descuento);
 
 		// Promoción AxB Común No vigente.
 		Double costoAtraccionGratis = 100.0;
-		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE,
-				costoAtraccionGratis, 3.0, 100, new Coordenada(50.0, 50.0));
+		Atraccion atraccionGratis = new Atraccion(TipoAtraccion.PAISAJE, costoAtraccionGratis, 3.0, 100, new Coordenada(50.0, 50.0));
 
 		this.calendario.set(2014, 4, 1); // "2014-05-01"
 		desde = this.calendario.getTime();
@@ -114,106 +101,90 @@ public class GeneradorSugerenciasTest {
 		atraccionesPromocionAxB.add(atraccionDeDegustacion);
 		atraccionesPromocionAxB.add(atraccionDePaisaje);
 
-		this.promocionAxBNoVigente = new PromocionAxB(atraccionesPromocionAxB,
-				desde, hasta, atraccionGratis);
+		this.promocionAxBNoVigente = new PromocionAxB(atraccionesPromocionAxB, desde, hasta, atraccionGratis);
 
 		// Lista completa de promociones disponibles.
-		this.promocionesDisponibles = new ArrayList<Sugerible>();
-		this.promocionesDisponibles.add(promocionAbsolutaVigente);
-		this.promocionesDisponibles.add(promocionPorcentualVigente);
-		this.promocionesDisponibles.add(promocionAxBNoVigente);
-		this.promocionesDisponibles.add(promocionAbsolutaVigenteBarata);
-		this.promocionesDisponibles.add(promocionPorcentualVigenteBarata);
-		this.promocionesDisponibles.add(promocionPorcentualVigenteBarata2);
+		promocionesDisponibles = new ArrayList<Sugerible>();
+		promocionesDisponibles.add(promocionAbsolutaVigente);
+		promocionesDisponibles.add(promocionPorcentualVigente);
+		promocionesDisponibles.add(promocionAxBNoVigente);
+		promocionesDisponibles.add(promocionAbsolutaVigenteBarata);
+		promocionesDisponibles.add(promocionPorcentualVigenteBarata);
+		promocionesDisponibles.add(promocionPorcentualVigenteBarata2);
 	}
 
 	@Before
 	public void setUpUsuario() {
 		Double presupuesto = 300.0;
 		Double tiempoDisponible = 15.0;
+		Double tiempoMaximoDeViaje = 1.0;
 		Double velocidadTraslado = 40.0;
 		Double latitud = 25.0;
 		Double longitud = 25.0;
+		Coordenada ubicacion = new Coordenada(latitud, longitud);
 
-		this.usuario = new Usuario(presupuesto, tiempoDisponible,
-				velocidadTraslado, latitud, longitud, TipoAtraccion.AVENTURA);
+		usuario = new Usuario(presupuesto, tiempoDisponible, tiempoMaximoDeViaje, velocidadTraslado, ubicacion, TipoAtraccion.AVENTURA);
 	}
 
 	@Before
 	public void setUpDiaDeVisita() {
 		this.calendario.set(2014, 2, 15); // "2014-03-15"
-		this.diaDeVisita = this.calendario.getTime();
+		diaDeVisita = this.calendario.getTime();
 	}
 
 	@Test
 	public void debeSugerirSoloPromocionesVigentes() {
-		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
-				this.promocionesDisponibles);
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(promocionesDisponibles);
 
-		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
-				this.usuario, this.diaDeVisita);
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(usuario, diaDeVisita);
 
 		for (Sugerible sugerencia : sugerencias) {
-			Assert.assertTrue(sugerencia.isVigente(this.diaDeVisita));
+			Assert.assertTrue(sugerencia.isVigente(diaDeVisita));
 		}
 	}
 
 	@Test
 	public void debeSugerirSoloPromocionesQueNoSuperenElPresupuestoDelUsuario() {
-		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
-				this.promocionesDisponibles);
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(promocionesDisponibles);
 
-		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
-				this.usuario, this.diaDeVisita);
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(usuario, diaDeVisita);
 
 		for (Sugerible sugerencia : sugerencias) {
-			Assert.assertTrue(sugerencia.getPrecio() < this.usuario
-					.getPresupuesto());
+			Assert.assertTrue(usuario.estaBienPrecio(sugerencia.getPrecio()));
 		}
 	}
 
 	@Test
 	public void debeSugerirSoloPromocionesQueTenganAtraccionesDelTipoQueElUsuarioPrefiere() {
-		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
-				this.promocionesDisponibles);
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(promocionesDisponibles);
 
-		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
-				this.usuario, this.diaDeVisita);
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(usuario, diaDeVisita);
 
 		for (Sugerible sugerencia : sugerencias) {
-			Assert.assertTrue(sugerencia.hasTipoAtraccion(this.usuario
-					.getTipoPreferido()));
+			Assert.assertTrue(usuario.estanBienTiposAtraccion(sugerencia.getListaTiposAtraccion()));
 		}
 	}
 
 	@Test
 	public void debeSugerirSoloPromocionesQueTenganUnaDuracionMenorALaQueElUsuarioTieneDisponible() {
-		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
-				this.promocionesDisponibles);
+		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(promocionesDisponibles);
 
-		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
-				this.usuario, this.diaDeVisita);
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(usuario, diaDeVisita);
 
 		for (Sugerible sugerencia : sugerencias) {
-			Assert.assertTrue(sugerencia.getDuracion() <= this.usuario
-					.getTiempoDisponible());
+			Assert.assertTrue(usuario.estaBienDuracion(sugerencia.getDuracion()));
 		}
 	}
 
 	@Test
 	public void debeSugerirSoloPromocionesCuyaAtraccionMasCercaQueEstenAMenosDeUnaHoraDeViaje() {
 		GeneradorSugerencias generadorSugerencias = new GeneradorSugerencias(
-				this.promocionesDisponibles);
+				promocionesDisponibles);
 
-		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(
-				this.usuario, this.diaDeVisita);
+		List<Sugerible> sugerencias = generadorSugerencias.getSugerencias(usuario, diaDeVisita);
 
 		for (Sugerible sugerencia : sugerencias) {
-			Double tiempoViaje = sugerencia.getDistanciaAtraccionMasCercana(
-					this.usuario.getLatitud(), this.usuario.getLongitud())
-					/ this.usuario.getVelocidadTraslado();
-
-			Assert.assertTrue(tiempoViaje <= 1.0);
+			Assert.assertTrue(usuario.estanBienUbicaciones(sugerencia.getListaUbicaciones()));
 		}
 	}
 }

@@ -13,31 +13,25 @@ public class PromocionAxB extends Promocion {
 		this.desde = desde;
 		this.hasta = hasta;
 		this.atraccionGratis = atraccionGratis;
-	}
-
-	public Double getPrecio() {
-		return this.getCostoTotal();
-	}
-
-	public Boolean hasTipoAtraccion(TipoAtraccion tipo) {
-		return super.hasTipoAtraccion(tipo)
-				|| (this.atraccionGratis.getTipo() == tipo);
-	}
-
+	}	
+	
+	@Override
 	public Double getDuracion() {
 		return super.getDuracion() + this.atraccionGratis.getDuracion();
 	}
 
-	public Double getDistanciaAtraccionMasCercana(Double latitud,
-			Double longitud) {
-		if (super.getDistanciaAtraccionMasCercana(latitud, longitud) != -1) {
-			return Math.min(
-					super.getDistanciaAtraccionMasCercana(latitud, longitud),
-					this.atraccionGratis.getUbicacion().calcularDistanciaA(
-							latitud, longitud));
-		} else {
-			return this.atraccionGratis.getUbicacion().calcularDistanciaA(
-					latitud, longitud);
-		}
+	@Override
+	public List<TipoAtraccion> getListaTiposAtraccion() {
+		List<TipoAtraccion> tiposAtracciones = super.getListaTiposAtraccion();
+		tiposAtracciones.add(atraccionGratis.getTipo());
+		return tiposAtracciones;
 	}
+
+	@Override
+	public List<Coordenada> getListaUbicaciones() {
+		List<Coordenada> ubicaciones = super.getListaUbicaciones();
+		ubicaciones.add(atraccionGratis.getUbicacion());
+		return ubicaciones;
+	}
+
 }

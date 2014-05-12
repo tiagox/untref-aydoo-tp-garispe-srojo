@@ -1,5 +1,6 @@
 package untref.aydoo.tp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,27 +14,15 @@ public abstract class Promocion implements Sugerible {
 		return this.desde.compareTo(referencia) <= 0
 				&& this.hasta.compareTo(referencia) >= 0;
 	}
-
-	protected Double getCostoTotal() {
+	
+	public Double getPrecio() {
 		Double costoTotal = 0.0;
-		for (Atraccion atraccion : this.atracciones) {
+		for (Atraccion atraccion : atracciones) {
 			costoTotal += atraccion.getCosto();
-		}
-
+		}		
 		return costoTotal;
 	}
-
-	public abstract Double getPrecio();
-
-	public Boolean hasTipoAtraccion(TipoAtraccion tipo) {
-		for (Atraccion atraccion : this.atracciones) {
-			if (atraccion.getTipo() == tipo) {
-				return true;
-			}
-		}
-		return false;
-	}
-
+	
 	public Double getDuracion() {
 		Double duracionTotal = 0.0;
 		for (Atraccion atraccion : this.atracciones) {
@@ -41,24 +30,21 @@ public abstract class Promocion implements Sugerible {
 		}
 		return duracionTotal;
 	}
-
-	public Double getDistanciaAtraccionMasCercana(Double latitud,
-			Double longitud) {
-		Double distanciaMasCercana;
-		if (this.atracciones.size() > 0) {
-			distanciaMasCercana = this.atracciones.get(0).getUbicacion()
-					.calcularDistanciaA(latitud, longitud);
-			for (Atraccion atraccion : this.atracciones) {
-				if (distanciaMasCercana > atraccion.getUbicacion()
-						.calcularDistanciaA(latitud, longitud)) {
-					distanciaMasCercana = atraccion.getUbicacion()
-							.calcularDistanciaA(latitud, longitud);
-				}
-			}
-		} else {
-			distanciaMasCercana = -1.0;
+	
+	public List<TipoAtraccion> getListaTiposAtraccion() {
+		List<TipoAtraccion> tiposAtracciones = new ArrayList<TipoAtraccion>();
+		for (Atraccion atraccion : atracciones) {
+			tiposAtracciones.add(atraccion.getTipo());
 		}
-		return distanciaMasCercana;
+		return tiposAtracciones;
+	}
+
+	public List<Coordenada> getListaUbicaciones() {
+		List<Coordenada> ubicaciones = new ArrayList<Coordenada>();
+		for (Atraccion atraccion : atracciones) {
+			ubicaciones.add(atraccion.getUbicacion());
+		}
+		return ubicaciones;
 	}
 
 }

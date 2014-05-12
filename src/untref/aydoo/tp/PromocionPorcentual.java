@@ -14,9 +14,10 @@ public class PromocionPorcentual extends Promocion {
 		this.hasta = hasta;
 		this.descuento = descuento;
 	}
-
+	
+	@Override
 	public Double getPrecio() {
-		return this.getCostoTotal() * (100.0 - this.descuento) / 100.0;
+		return super.getPrecio() * (100.0 - this.descuento) / 100.0;
 	}
 
 }

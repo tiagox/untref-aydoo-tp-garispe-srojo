@@ -1,47 +1,50 @@
 package untref.aydoo.tp;
 
+import java.util.List;
+
 public class Usuario {
 
 	private Double presupuesto;
 	private Double tiempoDisponible;
+	private Double tiempoMaximoDeViaje;
 	private Double velocidadTraslado;
-	private Double latitud;
-	private Double longitud;
+	private Coordenada ubicacion;
 	private TipoAtraccion tipoPreferido;
 
 	public Usuario(Double presupuesto, Double tiempoDisponible,
-			Double velocidadTraslado, Double latitud, Double longitud,
-			TipoAtraccion tipoPreferido) {
+			Double velocidadTraslado, Double tiempoMaximoDeViaje,
+			Coordenada ubicacion, TipoAtraccion tipoPreferido) {
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
+		this.tiempoMaximoDeViaje = tiempoMaximoDeViaje;
 		this.velocidadTraslado = velocidadTraslado;
-		this.latitud = latitud;
-		this.longitud = longitud;
+		this.ubicacion = ubicacion;
 		this.tipoPreferido = tipoPreferido;
 	}
 
-	public Double getPresupuesto() {
-		return this.presupuesto;
+	public Boolean estaBienPrecio(Double precio) {
+		return precio <= presupuesto;
 	}
 
-	public Double getTiempoDisponible() {
-		return this.tiempoDisponible;
+	public Boolean estaBienDuracion(Double duracion) {
+		return duracion <= tiempoDisponible;
 	}
 
-	public Double getVelocidadTraslado() {
-		return this.velocidadTraslado;
+	public Boolean estanBienTiposAtraccion(List<TipoAtraccion> tiposAtraccion) {
+		return tiposAtraccion.contains(tipoPreferido);
 	}
 
-	public TipoAtraccion getTipoPreferido() {
-		return this.tipoPreferido;
+	public Boolean estanBienUbicaciones(List<Coordenada> ubicaciones) {
+		for (Coordenada destino : ubicaciones) {
+			if (ubicacion.calcularDistanciaA(destino) <= getDistanciaMaximaDeViaje()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public Double getLatitud() {
-		return this.latitud;
-	}
-
-	public Double getLongitud() {
-		return this.longitud;
+	private Double getDistanciaMaximaDeViaje() {
+		return velocidadTraslado * tiempoMaximoDeViaje;
 	}
 
 }

@@ -95,39 +95,28 @@ public class PromocionAbsolutaTest {
 	}
 
 	@Test
-	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverTrueSiHayAlMenosUnaAtraccionDeEseTipo() {
+	public void consultarLaListaDeTiposDeAtraccionesDeberiaDevolverUnaListaConTodosLosTiposInclusoRepetidos() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 100,
 				new Coordenada(0.0, 0.0)));
 		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 2.0, 70,
 				new Coordenada(0.0, 0.0)));
-
-		Date desde = new Date();
-		Date hasta = new Date();
-		Double costo = 200.0;
-
-		Promocion promocion = new PromocionAbsoluta(atracciones, desde, hasta,
-				costo);
-
-		Assert.assertTrue(promocion.hasTipoAtraccion(TipoAtraccion.DEGUSTACION));
-	}
-
-	@Test
-	public void consultarSiTieneUnTipoDeAtraccionDebeDevolverFalseSiNoHayNingunaAtraccionDeEseTipo() {
-		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 4.0, 100,
-				new Coordenada(0.0, 0.0)));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 4.0, 70,
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 50.0, 2.0, 70,
 				new Coordenada(0.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double costo = 200.0;
 
-		Promocion promocion = new PromocionAbsoluta(atracciones, desde, hasta,
+		List<TipoAtraccion> listaEsperada = new ArrayList<TipoAtraccion>();
+		listaEsperada.add(TipoAtraccion.AVENTURA);
+		listaEsperada.add(TipoAtraccion.DEGUSTACION);
+		listaEsperada.add(TipoAtraccion.AVENTURA);
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde, hasta,
 				costo);
 
-		Assert.assertFalse(promocion.hasTipoAtraccion(TipoAtraccion.PAISAJE));
+		Assert.assertEquals(listaEsperada, promocion.getListaTiposAtraccion());
 	}
 
 	@Test
@@ -190,7 +179,7 @@ public class PromocionAbsolutaTest {
 	}
 
 	@Test
-	public void consultarLaDistanciaALaAtraccionMasCercana() {
+	public void consultarLaListaDeUbicacionesDeberiaDevolverUnaListaConTodasInclusoRepetidas() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 200,
 				new Coordenada(100.0, 0.0)));
@@ -198,63 +187,27 @@ public class PromocionAbsolutaTest {
 				100, new Coordenada(80.0, 0.0)));
 		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 100,
 				new Coordenada(90.0, 0.0)));
+		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 50.0, 10.0, 100,
+				new Coordenada(80.0, 0.0)));
 
 		Date desde = new Date();
 		Date hasta = new Date();
 		Double costo = 200.0;
 
-		Double latitud = 0.0;
-		Double longitud = 0.0;
-		Double distanciaEsperada = 80.0;
+		List<Coordenada> listaEsperada = new ArrayList<Coordenada>();
+		listaEsperada.add(new Coordenada(100.0, 0.0));
+		listaEsperada.add(new Coordenada(80.0, 0.0));
+		listaEsperada.add(new Coordenada(90.0, 0.0));
+		listaEsperada.add(new Coordenada(80.0, 0.0));
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
 				hasta, costo);
 
-		Assert.assertEquals(distanciaEsperada,
-				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
-	}
-
-	@Test
-	public void consultarLaDistanciaALaAtraccionMasCercanaCualquieraSea() {
-		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion(TipoAtraccion.AVENTURA, 100.0, 10.0, 400,
-				new Coordenada(800.0, 0.0)));
-		atracciones.add(new Atraccion(TipoAtraccion.DEGUSTACION, 50.0, 10.0,
-				100, new Coordenada(80.0, 0.0)));
-		atracciones.add(new Atraccion(TipoAtraccion.PAISAJE, 50.0, 10.0, 200,
-				new Coordenada(70.0, 0.0)));
-
-		Date desde = new Date();
-		Date hasta = new Date();
-		Double costo = 200.0;
-
-		Double latitud = 0.0;
-		Double longitud = 0.0;
-		Double distanciaEsperada = 70.0;
-
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
-				hasta, costo);
-
-		Assert.assertEquals(distanciaEsperada,
-				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
-	}
-
-	@Test
-	public void consultarLaDistanciaALaAtraccionMasCercanaSiNoHayAtraccionesDebeDevolverMenos1() {
-		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		Date desde = new Date();
-		Date hasta = new Date();
-		Double costo = 200.0;
-
-		Double latitud = 0.0;
-		Double longitud = 0.0;
-		Double distanciaEsperada = -1.0;
-
-		PromocionAbsoluta promocion = new PromocionAbsoluta(atracciones, desde,
-				hasta, costo);
-
-		Assert.assertEquals(distanciaEsperada,
-				promocion.getDistanciaAtraccionMasCercana(latitud, longitud));
+		List<Coordenada> sugerencias = promocion.getListaUbicaciones();
+		
+		for (int i = 0; i < listaEsperada.size(); i++) {
+			Assert.assertTrue(listaEsperada.get(i).esIgualA(sugerencias.get(i)));
+		}
 	}
 
 }

@@ -7,14 +7,15 @@ public class PromocionAbsoluta extends Promocion {
 
 	private Double precio;
 
-	public PromocionAbsoluta(List<Atraccion> atracciones, Date vigenciaDesde,
-			Date vigenciaHasta, Double precio) {
+	public PromocionAbsoluta(List<Atraccion> atracciones, Date desde,
+			Date hasta, Double precio) {
 		this.atracciones = atracciones;
-		this.desde = vigenciaDesde;
-		this.hasta = vigenciaHasta;
+		this.desde = desde;
+		this.hasta = hasta;
 		this.precio = precio;
 	}
-
+	
+	@Override
 	public Double getPrecio() {
 		return this.precio;
 	}

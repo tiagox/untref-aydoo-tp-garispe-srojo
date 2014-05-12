@@ -6,21 +6,17 @@ public class Coordenada {
 	private Double longitud;
 
 	public Coordenada(Double latitud, Double longitud) {
-
 		this.latitud = latitud;
 		this.longitud = longitud;
 	}
 
-	public Double getLatitud() {
-		return latitud;
+	public Double calcularDistanciaA(Coordenada destino) {
+		return Math.sqrt(Math.pow(Math.abs(latitud - destino.latitud), 2)
+				+ Math.pow(Math.abs(longitud - destino.longitud), 2));
+	}
+	
+	public Boolean esIgualA(Coordenada otro) {
+		return (this.latitud.equals(otro.latitud) && this.longitud.equals(otro.longitud));
 	}
 
-	public Double getLongitud() {
-		return longitud;
-	}
-
-	public Double calcularDistanciaA(Double latitud, Double longitud) {
-		return Math.sqrt(Math.pow(Math.abs(this.latitud - latitud), 2)
-				+ Math.pow(Math.abs(this.longitud - longitud), 2));
-	}
 }
