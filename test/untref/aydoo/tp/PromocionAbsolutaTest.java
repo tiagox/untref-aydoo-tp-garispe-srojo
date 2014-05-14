@@ -12,25 +12,6 @@ import org.junit.Test;
 public class PromocionAbsolutaTest {
 
 	@Test
-	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMayorQueLaFechaHasta() {
-		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		Calendar calendario = new GregorianCalendar();
-		calendario.set(2014, 2, 1); // "2014-03-01"
-		Date desde = calendario.getTime();
-		calendario.set(2014, 3, 30); // "2014-04-30"
-		Date hasta = calendario.getTime();
-		Double costo = 100.0;
-
-		calendario.set(2014, 4, 15); // "2014-05-15"
-		Date hoy = calendario.getTime();
-
-		Promocion promocion = new PromocionAbsoluta(atracciones, desde, hasta,
-				costo);
-
-		Assert.assertFalse(promocion.isVigente(hoy));
-	}
-
-	@Test
 	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();

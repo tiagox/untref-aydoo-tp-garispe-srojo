@@ -31,7 +31,7 @@ public class PromocionPorcentualTest {
 	}
 
 	@Test
-	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMenosQueLaFechaDesde() {
+	public void consultarLaVigenciaDeberiaDevolverFalseSiLaFechaEsMenorQueLaFechaDesde() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Calendar calendario = new GregorianCalendar();
 		calendario.set(2013, 2, 1); // "2014-03-01"

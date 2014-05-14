@@ -35,7 +35,7 @@ public class CoordenadaTest {
 	}
 	
 	@Test
-	public void compararSiEsIgualAOtraDeberiaDevolverVerdaderoSiRepresentanLaMismaUbicación() {
+	public void compararSiEsIgualAOtraDeberiaDevolverVerdaderoSiRepresentanLaMismaUbicacion() {
 		Double latitud = 99.49;
 		Double longitud = -54.31;
 		Coordenada origen = new Coordenada(latitud, longitud);
@@ -45,7 +45,7 @@ public class CoordenadaTest {
 	}
 
 	@Test
-	public void compararSiEsIgualAOtraDeberiaDevolverFalsoSiNoRepresentanLaMismaUbicación() {
+	public void compararSiEsIgualAOtraDeberiaDevolverFalsoSiNoRepresentanLaMismaUbicacion() {
 		Double latitud = 99.49;
 		Double longitud = -54.31;
 		Coordenada origen = new Coordenada(latitud, longitud);
