@@ -16,7 +16,7 @@ public class PromocionExtranjero extends Promocion {
 		this.hasta = hasta;
 		if (!aplicaPromocion(domicilio)) {
 			throw new Error(
-					"La promoción solo es aplicable a los usuarios con domicilio a más de "
+					"La promocion solo es aplicable a los usuarios con domicilio a mas de "
 							+ distanciaMinima + " km de las atracciones.");
 		}
 
