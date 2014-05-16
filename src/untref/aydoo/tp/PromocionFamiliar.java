@@ -40,6 +40,9 @@ public class PromocionFamiliar extends Promocion {
 					}
 				}
 			}
+		} else {
+
+			throw new Error("La lista no contiene atracciones.");
 		}
 		return descuentoTotal;
 	}
