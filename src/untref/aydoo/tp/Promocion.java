@@ -16,16 +16,6 @@ public abstract class Promocion implements Sugerible {
 				&& this.hasta.compareTo(referencia) >= 0;
 	}
 
-<<<<<<< HEAD
-	public Double getPrecio() {
-		Double costoTotal = 0.0;
-		for (Atraccion atraccion : atracciones) {
-			costoTotal += atraccion.getCosto();
-		}
-		return costoTotal;
-	}
-
-=======
 	@Override
 	public Double getPrecio() {
 		Double costoTotal = 0.0;
@@ -36,7 +26,6 @@ public abstract class Promocion implements Sugerible {
 	}
 
 	@Override
->>>>>>> 51f3c3f6399134257b2e877fdc4aa68ef1467206
 	public Double getDuracion() {
 		Double duracionTotal = 0.0;
 		for (Atraccion atraccion : this.atracciones) {
@@ -45,10 +34,7 @@ public abstract class Promocion implements Sugerible {
 		return duracionTotal;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
->>>>>>> 51f3c3f6399134257b2e877fdc4aa68ef1467206
 	public List<TipoAtraccion> getListaTiposAtraccion() {
 		List<TipoAtraccion> tiposAtracciones = new ArrayList<TipoAtraccion>();
 		for (Atraccion atraccion : atracciones) {

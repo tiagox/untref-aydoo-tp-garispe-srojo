@@ -27,15 +27,15 @@ public class PromocionFamiliar extends Promocion {
 		Double descuentoTotal = 0.0;
 		if (this.atracciones.size() > 0) {
 			for (Atraccion atraccion : this.atracciones) {
-				Double precioEntrada = atraccion.getCosto()
+				Double precioEntrada = atraccion.getPrecio()
 						/ entradasPorAtraccion.get(atraccion);
 				if (entradasPorAtraccion.containsKey(atraccion)) {
 					if (entradasPorAtraccion.get(atraccion) >= 4) {
 						if (entradasPorAtraccion.get(atraccion) > 4) {
-							descuentoTotal += (0.1 * atraccion.getCosto() + (entradasPorAtraccion
+							descuentoTotal += (0.1 * atraccion.getPrecio() + (entradasPorAtraccion
 									.get(atraccion) - 4) * precioEntrada * 0.3);
 						} else {
-							descuentoTotal += 0.1 * atraccion.getCosto();
+							descuentoTotal += 0.1 * atraccion.getPrecio();
 						}
 					}
 				}
