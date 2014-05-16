@@ -13,7 +13,7 @@ import org.junit.Test;
 public class PromocionFamiliarTest {
 
 	@Test
-	public void elPrecioTotalDeberiaSer26con80DeAcuerdoALasAtraccionesDelPaquete() {
+	public void elPrecioTotalDeberiaSer79DeAcuerdoALasAtraccionesDelPaquete() {
 
 		Atraccion atraccionAventura = new Atraccion(TipoAtraccion.AVENTURA,
 				20.0, 4.0, 100, new Coordenada(100.0, 100.0));
@@ -41,7 +41,7 @@ public class PromocionFamiliarTest {
 	}
 
 	@Test
-	public void elPrecioTotalDeberiaSer61con60DeAcuerdoALasAtraccionesDelPaquete() {
+	public void elPrecioTotalDeberiaSer257DeAcuerdoALasAtraccionesDelPaquete() {
 
 		Atraccion atraccionAventura = new Atraccion(TipoAtraccion.AVENTURA,
 				10.0, 4.0, 100, new Coordenada(100.0, 100.0));
