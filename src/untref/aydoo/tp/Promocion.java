@@ -14,15 +14,15 @@ public abstract class Promocion implements Sugerible {
 		return this.desde.compareTo(referencia) <= 0
 				&& this.hasta.compareTo(referencia) >= 0;
 	}
-	
+
 	public Double getPrecio() {
 		Double costoTotal = 0.0;
 		for (Atraccion atraccion : atracciones) {
 			costoTotal += atraccion.getCosto();
-		}		
+		}
 		return costoTotal;
 	}
-	
+
 	public Double getDuracion() {
 		Double duracionTotal = 0.0;
 		for (Atraccion atraccion : this.atracciones) {
@@ -30,7 +30,7 @@ public abstract class Promocion implements Sugerible {
 		}
 		return duracionTotal;
 	}
-	
+
 	public List<TipoAtraccion> getListaTiposAtraccion() {
 		List<TipoAtraccion> tiposAtracciones = new ArrayList<TipoAtraccion>();
 		for (Atraccion atraccion : atracciones) {
