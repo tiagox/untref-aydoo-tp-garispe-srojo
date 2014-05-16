@@ -10,19 +10,22 @@ public abstract class Promocion implements Sugerible {
 	protected Date desde;
 	protected Date hasta;
 
+	@Override
 	public Boolean isVigente(Date referencia) {
 		return this.desde.compareTo(referencia) <= 0
 				&& this.hasta.compareTo(referencia) >= 0;
 	}
-	
+
+	@Override
 	public Double getPrecio() {
 		Double costoTotal = 0.0;
 		for (Atraccion atraccion : atracciones) {
-			costoTotal += atraccion.getCosto();
+			costoTotal += atraccion.getPrecio();
 		}		
 		return costoTotal;
 	}
-	
+
+	@Override
 	public Double getDuracion() {
 		Double duracionTotal = 0.0;
 		for (Atraccion atraccion : this.atracciones) {
@@ -30,7 +33,8 @@ public abstract class Promocion implements Sugerible {
 		}
 		return duracionTotal;
 	}
-	
+
+	@Override
 	public List<TipoAtraccion> getListaTiposAtraccion() {
 		List<TipoAtraccion> tiposAtracciones = new ArrayList<TipoAtraccion>();
 		for (Atraccion atraccion : atracciones) {
@@ -39,6 +43,7 @@ public abstract class Promocion implements Sugerible {
 		return tiposAtracciones;
 	}
 
+	@Override
 	public List<Coordenada> getListaUbicaciones() {
 		List<Coordenada> ubicaciones = new ArrayList<Coordenada>();
 		for (Atraccion atraccion : atracciones) {

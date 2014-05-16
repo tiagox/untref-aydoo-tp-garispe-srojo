@@ -10,16 +10,15 @@ public class PromocionExtranjero extends Promocion {
 
 	public PromocionExtranjero(List<Atraccion> atracciones, Date desde,
 			Date hasta, Coordenada domicilio) {
-
 		this.atracciones = atracciones;
 		this.desde = desde;
 		this.hasta = hasta;
+
 		if (!aplicaPromocion(domicilio)) {
 			throw new Error(
 					"La promocion solo es aplicable a los usuarios con domicilio a mas de "
 							+ distanciaMinima + " km de las atracciones.");
 		}
-
 	}
 
 	private Boolean aplicaPromocion(Coordenada domicilio) {
